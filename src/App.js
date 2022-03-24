@@ -1,11 +1,15 @@
 import React from 'react';
 import AddressBook from './components/AddressBook'
+import Nav from './components/Nav';
 import './styles.scss'
 
 function App() {
 
     return (
-        <AddressBook />
+        <>
+            <Nav />
+            <AddressBook />
+        </>
     )
 }
 

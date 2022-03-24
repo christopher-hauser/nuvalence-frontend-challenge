@@ -1,7 +1,6 @@
 import React from "react";
 
 function ContactDetails( { contact } ) {
-    console.log('contact', contact);
 
     return (
         <div className="contact-details-block">

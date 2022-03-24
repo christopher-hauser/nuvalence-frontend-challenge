@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import ContactList from './ContactList';
 import ContactDetails from './ContactDetails';
 
@@ -17,13 +17,13 @@ function AddressBook() {
             let data = await response.json();
 
             data = data.results.sort((a, b) => {
-                    if ( a.name.last.toLowerCase() < b.name.last.toLowerCase()){
-                      return -1;
-                    }
-                    if ( a.name.last.toLowerCase() > b.name.last.toLowerCase()){
-                      return 1;
-                    }
-                    return 0;
+                if (a.name.last.toLowerCase() < b.name.last.toLowerCase()) {
+                    return -1;
+                }
+                if (a.name.last.toLowerCase() > b.name.last.toLowerCase()) {
+                    return 1;
+                }
+                return 0;
             });
 
             setContacts(data);
@@ -35,11 +35,9 @@ function AddressBook() {
     }, [])
 
     return (
-        <div id='app'>
-            <div id='address-book-container'>
-                <ContactList contacts={contacts} sendSelectedContact={sendSelectedContact}/>
-                <ContactDetails contact={selectedContact}/>
-            </div>
+        <div id='address-book-container'>
+            <ContactList contacts={contacts} sendSelectedContact={sendSelectedContact} />
+            <ContactDetails contact={selectedContact} />
         </div>
     )
 }

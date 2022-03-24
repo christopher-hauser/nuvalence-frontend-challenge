@@ -5,7 +5,6 @@ function ContactList({ contacts, sendSelectedContact }) {
 
     return (
         <div id='contacts-sidebar'>
-            <h2>Contacts</h2>
             <div id='contact-list'>
                 {contacts?.map((contact, idx) => (
                     <div className="contact-block"
