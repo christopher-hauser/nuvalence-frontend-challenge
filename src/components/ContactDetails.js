@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
-function ContactDetails() {
-    const [contact, setContact] = useState(null);
+function ContactDetails( { contact } ) {
+    console.log('contact', contact);
 
     return (
         <div className="contact-details-block">
@@ -11,8 +11,12 @@ function ContactDetails() {
 
             {contact && (
                 <>
-                    <img src={contact.picture.thumbnail} alt={`${contact.name.first}-${contact.name.last}-photo`} style={{ width: '400px', height: '400px' }} />
+                    <img src={contact.picture.large} alt={`${contact.name.first}-${contact.name.last}`} className='contact-photo' />
                     <h3>{`${contact.name.first} ${contact.name.last}`}</h3>
+                    <p>{`${contact.phone}`}</p>
+                    <p>{`${contact.location.street.number} ${contact.location.street.name}`}</p>
+                    <p>{`${contact.location.city}, ${contact.location.state}`}</p>
+                    <p>{`${contact.location.country}`}</p>
                 </>
             )}
         </div>
