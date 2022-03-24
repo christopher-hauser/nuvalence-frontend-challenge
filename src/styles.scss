@@ -1,0 +1,30 @@
+* {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+    margin: 0 15%;
+}
+
+#contacts-sidebar {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 20%;
+    padding: 0 10px;
+}
+
+.contact-block {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+    padding: 10px 0px;
+}
+
+.contact-block h3 {
+    margin: 0;
+}
+
+.contact-block p {
+    margin: 4px 0px;
+}
