@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ContactList from './ContactList';
-import ContactDetails from './ContactDetails';
+import ContactList from '../ContactList/ContactList';
+import ContactDetails from '../ContactDetails/ContactDetails';
 
 function AddressBook() {
     const [originalContacts, setOriginalContacts] = useState();
@@ -44,7 +44,7 @@ function AddressBook() {
             if (searchValue === '') {
                 setContacts(originalContacts)
             } else {
-                let searchResults = originalContacts.filter(contact => {
+                let searchResults = originalContacts?.filter(contact => {
                     const matchesQuery =
                         contact.name.first.toLowerCase().includes(searchValue.toLowerCase()) ||
                         contact.name.last.toLowerCase().includes(searchValue.toLowerCase())

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Contact from "./Contact";
+import Contact from "../Contact/Contact";
 
 function ContactList({ contacts, sendSelectedContact }) {
 
