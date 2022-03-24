@@ -64,10 +64,12 @@ nav h1 {
     margin-right: 20px;
     padding-top: 5px;
     padding-bottom: 10px;
+    transition: 0.2s;
 }
 
 .contact-block:hover {
     cursor: pointer;
+    background-color: rgb(215, 234, 250);
 }
 
 .contact-block h4 {
@@ -83,14 +85,34 @@ nav h1 {
 
 .contact-details-block {
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
-    width: 60%;
+    width: 50%;
     justify-content: center;
     align-items: center;
+    border: 1px solid gray;
+    padding: 10% 0% 20% 0%;
+}
+
+.contact-details-block p {
+    margin: 0;
+}
+
+.contact-details-block h3 {
+    font-size: 32px;
+    font-weight: 700;
 }
 
 .contact-photo {
     height: 150px;
     width: 150px;
     border-radius: 200px;
+}
+
+.address-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 18px;
 }
