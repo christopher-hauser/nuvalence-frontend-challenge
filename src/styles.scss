@@ -6,12 +6,26 @@ body {
     margin: 0 15%;
 }
 
+#address-book-container {
+    display: flex;
+    justify-content: space-between;
+    height: 90vh;
+    margin: 2% 15%;
+}
+
+
 #contacts-sidebar {
     display: flex;
     flex-direction: column;
     border: 1px solid black;
     width: 20%;
     padding: 0 10px;
+}
+
+#contact-list {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
 }
 
 .contact-block {
@@ -21,10 +35,19 @@ body {
     padding: 10px 0px;
 }
 
-.contact-block h3 {
+.contact-block h4 {
     margin: 0;
 }
 
 .contact-block p {
     margin: 4px 0px;
+}
+
+
+.contact-details-block {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
 }
