@@ -12,8 +12,15 @@ const loadSelectedContact = contact => ({
 })
 
 
-export const getContacts = (pageNo) => async dispatch => {
-    const response = await fetch(`https://randomuser.me/api/?page=${pageNo}&results=20&seed=abc&inc=name,location,email,phone,cell,picture`)
+export const getContacts = (pageNo, selectedNats) => async dispatch => {
+    selectedNats = selectedNats.map(nat => {
+        return nat.value.toLowerCase();
+    }).join(',')
+
+    let fetchURL = selectedNats.length > 0 ?
+        `https://randomuser.me/api/?page=${pageNo}?nat=${selectedNats}&results=20&seed=abc&inc=name,location,email,phone,cell,picture,nat,id` :
+        `https://randomuser.me/api/?page=${pageNo}&results=20&seed=abc&inc=name,location,email,phone,cell,picture,nat,id`
+    const response = await fetch(fetchURL);
     let data = await response.json();
 
     data = data.results.sort((a, b) => {

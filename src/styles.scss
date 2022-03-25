@@ -41,7 +41,7 @@ nav h1 {
     display: flex;
     justify-content: space-between;
     height: 80vh;
-    padding: 3% 5% 3% 5%;
+    margin: 3% 5% 3% 5%;
 }
 
 #search-list {
@@ -81,9 +81,9 @@ nav h1 {
 
 .contact-block {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid $light-lines;
-    margin-right: 20px;
     padding-top: 5px;
     padding-bottom: 10px;
     transition: 0.2s;
@@ -241,4 +241,13 @@ button:hover {
 
 .page-selected:hover {
     background-color: rgb(0, 54, 99);
+}
+
+.favorite {
+    color: rgb(230, 138, 0);
+    margin-right: 20px;
+}
+
+.favorite:hover {
+    cursor: pointer;
 }
