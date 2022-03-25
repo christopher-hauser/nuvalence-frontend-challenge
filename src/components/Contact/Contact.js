@@ -1,32 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectContact } from '../../store/contacts'
+import { selectContact, storeFavorites } from '../../store/contacts'
 
 function Contact({ contact }) {
     const dispatch = useDispatch();
     const selected = useSelector(state => state.contacts.selectedContact)
+    const favorites = useSelector(state => state.contacts.favoriteContacts);
     const isSelected = contact.name.last === selected.name?.last && contact.name.first === selected?.name.first;
-    let favorited = window.localStorage.getItem(`favorite-${contact.name.last}-${contact.name.first}`);
-    const [isFavorite, setIsFavorite] = useState(favorited)
 
+    let alreadyFavorited = favorites?.find(person => person.name.last === contact.name.last && person.name.first === contact.name.first);
+    const [isFavorite, setIsFavorite] = useState(Boolean(alreadyFavorited))
 
     const handleClick = () => {
         dispatch(selectContact(contact))
     }
 
+    const addFavorite = () => {
+        console.log('before: ', favorites)
+        let favoritesCopy = favorites;
+        favorites.push(contact);
+        dispatch(storeFavorites(favoritesCopy));
+        window.localStorage.setItem('address-book-favorites', JSON.stringify(favoritesCopy));
+        return favoritesCopy;
+    }
+
+    const removeFavorite = () => {
+        let favoritesCopy = favorites.filter(favorite => {
+            return favorite.name.last !== contact.name.last && favorite.name.first !== contact.name.first
+        })
+        dispatch(storeFavorites(favoritesCopy));
+        window.localStorage.setItem('address-book-favorites', JSON.stringify(favoritesCopy));
+        return favoritesCopy;
+    }
+
+
     const handleFavorite = e => {
         e.stopPropagation();
-
-        isFavorite ? window.localStorage.removeItem(`favorite-${contact.name.last}-${contact.name.first}`) :
-        window.localStorage.setItem(`favorite-${contact.name.last}-${contact.name.first}`, !isFavorite);
-
+        isFavorite ? removeFavorite() : addFavorite();
         setIsFavorite(!isFavorite);
     }
 
-    useEffect(()=> {
-        favorited = window.localStorage.getItem(`favorite-${contact.name.last}-${contact.name.first}`);
-        setIsFavorite(favorited)
+    useEffect(() => {
+        alreadyFavorited = favorites?.find(person => person.name.last === contact.name.last && person.name.first === contact.name.first);
+        setIsFavorite(alreadyFavorited)
     }, [contact])
+
 
     return (
         <>

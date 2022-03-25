@@ -1,39 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import ContactList from '../ContactList/ContactList';
 import ContactDetails from '../ContactDetails/ContactDetails';
-import { getContacts } from '../../store/contacts';
+import Favorites from '../Favorites/Favorites';
+import { getContacts, storeFavorites } from '../../store/contacts';
 import { useDispatch, useSelector } from 'react-redux';
-import { MultiSelect } from 'react-multi-select-component';
 
 function AddressBook() {
     const dispatch = useDispatch();
-    const contacts = useSelector(state => state.contacts.contacts)
+    const contacts = useSelector(state => state.contacts.contacts);
     const [pageNo, setPageNo] = useState(1);
     const [searchValue, setSearchValue] = useState('');
-    const [selectedNats, setSelectedNats] = useState([]);
-
-    const nationalities = [
-        { label: "United States", value: "US" },
-        { label: "Australia", value: "AU" },
-        { label: "Brazil", value: "BR" },
-        { label: "Canada", value: "CA" },
-        { label: "Switzerland", value: "CH" },
-        { label: "Germany", value: "DE" },
-        { label: "Denmark", value: "DK" },
-        { label: "Spain", value: "ES" },
-        { label: "Finland", value: "FI" },
-        { label: "France", value: "FR" },
-        { label: "United Kingdom", value: "GB" },
-        { label: "Ireland", value: "IE" },
-        { label: "Iran", value: "IR" },
-        { label: "Norway", value: "NO" },
-        { label: "Netherlands", value: "NL" },
-        { label: "New Zealand", value: "NZ" },
-        { label: "Turkey", value: "TR" },
-    ]
 
     async function loadAllContacts() {
-        await dispatch(getContacts(pageNo, selectedNats));
+        await dispatch(getContacts(pageNo));
     }
 
     const handleChange = (e) => {
@@ -42,17 +21,17 @@ function AddressBook() {
 
     useEffect(() => {
         loadAllContacts();
-    }, [pageNo, selectedNats])
+    }, [pageNo])
+
+    useEffect(() => {
+        console.log('in useEffect')
+        dispatch(storeFavorites(JSON.parse(window.localStorage.getItem('address-book-favorites'))))
+    }, [])
+
 
     return (
         <div id='address-book-container'>
             <div id='search-list'>
-                <MultiSelect
-                    options={nationalities}
-                    value={selectedNats}
-                    onChange={setSelectedNats}
-                    labelledBy="Select"
-                />
                 {/* <form id='search-bar'>
                     <input
                         value={searchValue}
@@ -60,6 +39,7 @@ function AddressBook() {
                         placeholder={"Search . . ."}
                     />
                 </form> */}
+                <Favorites />
                 <ContactList contacts={contacts} />
                 <div id='pagination-container'>
                     <button onClick={e => pageNo === 1 ? '' : setPageNo(pageNo => pageNo -= 1)}>&larr;</button>

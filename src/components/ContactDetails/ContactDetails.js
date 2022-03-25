@@ -8,7 +8,10 @@ function ContactDetails() {
     return (
         <div className="contact-details-block">
             {!Object.keys(contact).length && (
-                <h4>Select a user to view their contact information.</h4>
+                <div className="no-user-selected">
+                    <i className="bi bi-person-circle"></i>
+                    <h4>Select a user to view their contact information.</h4>
+                </div>
             )}
 
             {Object.keys(contact).length > 0 && (
@@ -33,7 +36,7 @@ function ContactDetails() {
                             <p>{`${contact.email}`}</p>
                         </div>
                         <div className="contact-detail-block">
-                        <i class="bi bi-geo-alt-fill contact-detail-icon"></i>
+                        <i className="bi bi-geo-alt-fill contact-detail-icon"></i>
                             <div>
                                 <p>{`${contact.location.street.number} ${contact.location.street.name}`}</p>
                                 <p>{`${contact.location.city}, ${contact.location.state}`}</p>
