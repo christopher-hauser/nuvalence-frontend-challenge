@@ -7,25 +7,29 @@ import { useDispatch, useSelector } from 'react-redux';
 function AddressBook() {
     const dispatch = useDispatch();
     const contacts = useSelector(state => state.contacts.contacts)
+
     const [pageNo, setPageNo] = useState(1);
     const [searchValue, setSearchValue] = useState('');
 
     async function loadAllContacts() {
         await dispatch(getContacts(pageNo));
     }
+
+    const handleChange = (e) => {
+        setSearchValue(e.target.value);
+    }
+
     useEffect(() => {
         loadAllContacts();
-        console.log('PAGE NO', pageNo);
     }, [pageNo])
-
 
     return (
         <div id='address-book-container'>
             <div id='search-list'>
                 <form id='search-bar'>
                     <input
-                        // value={searchValue}
-                        // onChange={handleChange}
+                        value={searchValue}
+                        onChange={handleChange}
                         placeholder={"Search . . ."}
                     />
                 </form>

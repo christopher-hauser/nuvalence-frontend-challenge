@@ -11,9 +11,9 @@ const loadSelectedContact = contact => ({
     payload: contact
 })
 
+
 export const getContacts = (pageNo) => async dispatch => {
-    console.log('in get contacts')
-    const response = await fetch(`https://randomuser.me/api/?page=${pageNo}&results=20&seed=abc`)
+    const response = await fetch(`https://randomuser.me/api/?page=${pageNo}&results=20&seed=abc&inc=name,location,email,phone,cell,picture`)
     let data = await response.json();
 
     data = data.results.sort((a, b) => {
@@ -30,12 +30,11 @@ export const getContacts = (pageNo) => async dispatch => {
 }
 
 export const selectContact = (contact) => async dispatch => {
-    console.log('in select contact');
     dispatch(loadSelectedContact(contact));
     return contact;
 }
 
-const initialState = {'contacts': [], 'selectedContact': {}};
+const initialState = {'contacts': [], 'selectedContact': {}, 'searchResults': []};
 
 export default function (state = initialState, action) {
     let newState = {...state};

@@ -1,5 +1,6 @@
-$nav-and-select: rgb(215, 234, 250);
+$nav-and-select: rgb(182, 201, 218);
 $light-lines: rgb(196, 196, 196);
+$light-text: rgb(73, 73, 73);
 
 * {
     font-family: 'Karla', Helvetica, Arial, sans-serif;
@@ -9,7 +10,6 @@ $light-lines: rgb(196, 196, 196);
 
 body {
     margin: 0;
-    min-width: 600px;
 }
 
 #root {
@@ -36,20 +36,18 @@ nav h1 {
     display: flex;
     justify-content: space-between;
     height: 80vh;
-    margin: 3% 5% 3% 5%;
+    padding: 3% 5% 3% 5%;
 }
 
 #search-list {
     display: flex;
     flex-direction: column;
-    min-width: 300px;
     width: 45%;
     height: 100%;
     padding: 0 10px;
 }
 
 #search-bar input {
-    min-width: 250px;
     width: 50%;
     height: 24px;
     margin-bottom: 30px;
@@ -79,12 +77,12 @@ nav h1 {
 .contact-block {
     display: flex;
     flex-direction: column;
-    min-width: 300px;
     border-bottom: 1px solid $light-lines;
     margin-right: 20px;
     padding-top: 5px;
     padding-bottom: 10px;
     transition: 0.2s;
+    padding-left: 10px;
 }
 
 .contact-block-exit {
@@ -95,16 +93,25 @@ nav h1 {
 .contact-block:hover {
     cursor: pointer;
     background-color: $nav-and-select;
+    h4 {
+        color: black;
+    }
+    p {
+        color: black;
+    }
 }
 
 .contact-block h4 {
     margin: 0;
     font-weight: 600;
+    color: $light-text;
 }
 
 .contact-block p {
     margin: 4px 0px;
     font-size: 14px;
+    color: $light-text;
+
 }
 
 
@@ -116,7 +123,7 @@ nav h1 {
     justify-content: flex-start;
     align-items: center;
     border-left: 1px solid $light-lines;
-    padding: 0% 2% 20% 2%;
+    padding: 0% 5% 20% 5%;
     transition: 0.5s;
 }
 
@@ -147,14 +154,50 @@ nav h1 {
     margin-left: 40px;
 }
 
-.contact-details-block {
+.contact-details-bottom {
     display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-top: 5%;
+    width: 100%;
+}
+
+.contact-detail-block {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 6%;
+    border-bottom: $light-lines;
+}
+
+.contact-detail-block p {
+    color: $light-text;
+    font-size: 20px;
+}
+
+.contact-detail-icon {
+    color: $light-text;
+    margin-right: 18px;
+}
+
+.phone-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.inner-phone-container {
+    display: flex;
+    margin-bottom: 10px;
 }
 
 #pagination-container {
     display: flex;
     width: 100%;
     justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    background-color: $nav-and-select;
+    border-radius: 40px;
+    height: 100px;
 }
 
 button {
@@ -165,13 +208,15 @@ button {
     width: 30px;
     height: 30px;
     border-radius: 50px;
-    margin: 0% 2%;
-    transition: 0.2s
+    margin: 0% 14px;
+    transition: 0.2s;
+    text-align: center;
 }
 
 button:hover {
     cursor: pointer;
     background-color: rgba(0, 54, 99, 0.432);
+    color: white;
 }
 
 .page-selected {
