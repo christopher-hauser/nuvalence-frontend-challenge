@@ -87,6 +87,11 @@ nav h1 {
     transition: 0.2s;
 }
 
+.contact-block-exit {
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+}
+
 .contact-block:hover {
     cursor: pointer;
     background-color: $nav-and-select;
@@ -142,6 +147,6 @@ nav h1 {
     margin-left: 40px;
 }
 
-.contact-detail-block {
-
+.contact-details-block {
+    display: flex;
 }
