@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectContact } from '../../store/contacts'
+import { selectContact } from '../../store/contacts';
 
 function FavoriteContact( { contact }) {
     const selected = useSelector(state => state.contacts.selectedContact);
