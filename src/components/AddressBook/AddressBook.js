@@ -36,10 +36,17 @@ function AddressBook() {
                 <Favorites />
                 <ContactList contacts={contacts} />
                 <div id='pagination-container'>
-                    <button onClick={e => pageNo === 1 ? '' : setPageNo(pageNo => pageNo -= 1)}>&larr;</button>
-                    <button onClick={e => setPageNo(parseInt(e.target.innerText))} className={pageNo === 1 ? 'page-selected' : ''} >{pageNo === 1 ? 1 : pageNo - 1}</button>
-                    <button onClick={e => setPageNo(parseInt(e.target.innerText))} className={pageNo === 1 ? '' : 'page-selected'}>{pageNo === 1 ? 2 : pageNo}</button>
-                    <button onClick={e => setPageNo(parseInt(e.target.innerText))}>{pageNo === 1 ? 3 : pageNo + 1}</button>
+                    <button onClick={e => pageNo === 1 ? '' : setPageNo(pageNo => pageNo -= 1)}>←</button>
+                    <button onClick={e => setPageNo(parseInt(e.target.innerText))} className={pageNo === 1 ? 'page-selected' : ''} >1</button>
+                    <button onClick={e => setPageNo(parseInt(e.target.innerText))} className={pageNo === 2 ? 'page-selected' : ''}>2</button>
+                    {pageNo <= 4 && (
+                        <button onClick={e => setPageNo(parseInt(e.target.innerText))} className={pageNo === 3 ? 'page-selected' : ''}>3</button>
+                    )}
+                    {pageNo > 4 && (
+                        <p id='page-ellipses'>. . .</p>
+                    )}
+                    <button onClick={e => setPageNo(parseInt(e.target.innerText))} className={pageNo === 4 || pageNo > 4 ? 'page-selected' : ''}>{pageNo <= 4 ? 4 : pageNo}</button>
+                    <button onClick={e => setPageNo(parseInt(e.target.innerText))}>{pageNo <= 4 ? 5 : pageNo + 1}</button>
                     <button onClick={e => setPageNo(pageNo => pageNo += 1)}>&rarr;</button>
                 </div>
             </div>
