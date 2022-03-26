@@ -24,7 +24,7 @@ p {
 
 #nav {
     padding-left: 5%;
-    background-color: $nav-and-select;
+    background-color: rgb(0, 54, 99);
     height: 8%;
     display: flex;
     align-items: center;
@@ -33,15 +33,18 @@ p {
 
 nav h1 {
     margin: 0;
+    font-family: 'Spartan', sans-serif;
     font-weight: 300;
-    font-size: 30px;
+    font-size: 40px;
+    color: white;
+    text-align: center;
 }
 
 #address-book-container {
     display: flex;
     justify-content: space-between;
     height: 80vh;
-    margin: 3% 5% 3% 5%;
+    margin: 2% 5% 2% 5%;
 }
 
 #search-list {
@@ -250,10 +253,58 @@ button:hover {
     margin-right: 20px;
 }
 
-.favorite:hover {
+.favorite:not(.static):hover {
     cursor: pointer;
 }
 
 .no-user {
     font-size: 400px;
+}
+
+#favorites-block {
+    // border: 1px solid black;
+    background-color: rgb(231, 207, 171);
+    padding: 5px 10px 15px 10px;
+    margin-bottom: 20px;
+    border-radius: 0px;
+}
+
+#favorites-scroll {
+    display: flex;
+    margin: 0px 10px;
+    overflow-x: clip;
+}
+
+.favorite-individual-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 20px;
+    padding: 5px 10px;
+    border-bottom: 4px solid rgb(255, 255, 255);
+    // background-color: rgb(229, 197, 151);
+    transition: 0.2s;
+    h4 {
+        font-family: 'Spartan', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        margin: 0;
+        color: black;
+    }
+}
+
+.favorite-individual-block:hover {
+    cursor: pointer;
+    border-bottom: 4px solid rgb(241, 182, 98);
+}
+
+.favorite-individual-block.selected {
+    border-bottom: 4px solid rgb(243, 151, 21);
+}
+
+.contact-photo-favorites {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    padding: 5px 0px;
 }

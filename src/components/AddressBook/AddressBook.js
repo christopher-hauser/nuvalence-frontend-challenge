@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ContactList from '../ContactList/ContactList';
 import ContactDetails from '../ContactDetails/ContactDetails';
-import Favorites from '../Favorites/Favorites';
+import Favorites from '../FavoritesList/FavoritesList';
 import { getContacts, storeFavorites } from '../../store/contacts';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -24,7 +24,6 @@ function AddressBook() {
     }, [pageNo])
 
     useEffect(() => {
-        console.log('in useEffect')
         dispatch(storeFavorites(JSON.parse(window.localStorage.getItem('address-book-favorites'))))
     }, [])
 
