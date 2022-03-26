@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import FavoriteContact from "../FavoriteContacts/FavoriteContact";
 import { selectContact } from "../../store/contacts";
+import './FavoritesList.scss'
 
 function FavoritesList() {
     const dispatch = useDispatch();
@@ -9,9 +10,6 @@ function FavoritesList() {
     const [currentSlideSelected, setCurrentSlideSelected] = useState(0);
     const favorites = useSelector(state => state.contacts.favoriteContacts);
     const selectedContact = useSelector(state => state.contacts.selectedContact);
-
-    console.log('slide selected', currentSlideSelected)
-    console.log('slide position', slidePosition)
 
     const leftClick = () => {
         const currentIdx = favorites.indexOf(selectedContact);
@@ -71,7 +69,7 @@ function FavoritesList() {
                 </button>
                 <div id='favorites-carousel'>
                     <div id='favorites-track'
-                        style={{ 'transform': `translateX(-${slidePosition * 120}px)`}}>
+                        style={{ 'transform': `translateX(-${slidePosition * 20}%)`}}>
                         {favorites.length > 0 && favorites.map((contact, idx) => (
                             <FavoriteContact contact={contact} key={idx} />
                         ))}

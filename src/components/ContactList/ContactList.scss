@@ -1,0 +1,15 @@
+#contact-list {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+#contact-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+#contact-list::-webkit-scrollbar-thumb {
+    background-color: rgb(155, 155, 155);
+    border-radius: 2px;
+}

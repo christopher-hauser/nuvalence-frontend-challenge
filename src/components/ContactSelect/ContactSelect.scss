@@ -1,0 +1,44 @@
+$nav-and-select: rgb(182, 201, 218);
+$light-lines: rgb(196, 196, 196);
+$light-text: rgb(73, 73, 73);
+
+.contact-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $light-lines;
+    transition: 0.2s;
+    padding: 5px 0 10px 10px;
+    h4 {
+        margin: 0;
+        color: $light-text;
+        font-weight: 600;
+    };
+
+    p {
+        margin: 4px 0px;
+        font-size: 14px;
+        color: $light-text;
+    };
+}
+
+.contact-block.selected {
+    background-color: rgb(0, 54, 99);
+    h4 {
+        color: white;
+    }
+    p {
+        color: white;
+    }
+}
+
+.contact-block:not(.selected):hover {
+    cursor: pointer;
+    background-color: $nav-and-select;
+    h4 {
+        color: black;
+    }
+    p {
+        color: black;
+    }
+}

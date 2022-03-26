@@ -1,0 +1,30 @@
+$breakpoint-tablet: 768px;
+$breakpoint-medium: 992px;
+$breakpoint-large: 1200px;
+
+#nav {
+    padding-left: 5%;
+    background-color: rgb(0, 54, 99);
+    height: 8%;
+    display: flex;
+    align-items: center;
+    h1 {
+        margin: 0;
+        font-family: 'Spartan', sans-serif;
+        font-weight: 300;
+        color: white;
+        text-align: center;
+
+        @media screen and (max-width: $breakpoint-tablet ){
+            font-size: 32px;
+        }
+
+        @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
+            font-size: 36px;
+        }
+
+        @media screen and (min-width: $breakpoint-medium) {
+            font-size: 40px;
+        }
+    }
+}

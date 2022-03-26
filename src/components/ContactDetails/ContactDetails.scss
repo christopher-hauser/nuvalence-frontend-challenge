@@ -1,0 +1,143 @@
+$nav-and-select: rgb(182, 201, 218);
+$light-lines: rgb(196, 196, 196);
+$light-text: rgb(73, 73, 73);
+$breakpoint-tablet: 768px;
+$breakpoint-medium: 992px;
+$breakpoint-large: 1200px;
+
+.contact-details-block {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    width: 50%;
+    justify-content: center;
+    align-items: flex-start;
+    border-left: 1px solid $light-lines;
+    transition: 0.5s;
+    p {
+        margin: 0;
+    }
+
+    @media screen and (max-width: $breakpoint-tablet ){
+        padding: 10% 5% 10% 5%;
+    }
+
+    @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
+        padding: 7.5% 5% 7.5% 5%;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+        padding: 5% 5% 5% 5%;
+    }
+}
+
+
+.contact-photo {
+    border-radius: 200px;
+
+    @media screen and (max-width: $breakpoint-tablet ){
+        height: 50px;
+        width: 50px;
+    }
+
+    @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
+        height: 75px;
+        width: 75px;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+        height: 100px;
+        width: 100px;
+    }
+}
+
+.contact-details-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90%;
+    margin-left: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $light-lines;
+    h3 {
+        font-family: 'Spartan', sans-serif;
+        @media screen and (max-width: $breakpoint-tablet ){
+            font-size: 18px;
+            font-weight: 400;
+            margin: 0 0 0 10px;
+        }
+
+        @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
+            font-size: 24px;
+            font-weight: 400;
+            margin: 0 0 0 20px;
+        }
+
+        @media screen and (min-width: $breakpoint-medium) {
+            font-size: 32px;
+            font-weight: 400;
+            margin: 0 0 0 40px;
+        }
+    }
+}
+
+.contact-details-bottom {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-top: 5%;
+    width: 100%;
+}
+
+.contact-detail-block {
+    display: flex;
+    align-items: flex-start;
+    border-bottom: $light-lines;
+    margin-bottom: 6%;
+    p {
+        color: $light-text;
+        font-family: 'Spartan', sans-serif;;
+        @media screen and (max-width: $breakpoint-tablet ){
+                font-size: 12px;
+        }
+
+        @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
+                font-size: 16px;
+        }
+
+        @media screen and (min-width: $breakpoint-medium) {
+                font-size: 20px;
+        }
+    }
+}
+
+.contact-detail-icon {
+    color: $light-text;
+    margin-right: 18px;
+}
+
+.phone-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.inner-phone-container {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.no-user-selected {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    margin: 0 10%;
+    h4 {
+        text-align: center;
+    }
+}
+
+.no-user {
+    color:rgb(73, 73, 73);
+}

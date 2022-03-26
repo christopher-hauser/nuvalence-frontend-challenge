@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectContact, addThisFavorite, removeThisFavorite } from '../../store/contacts'
+import './ContactSelect.scss'
 
 function Contact({ contact }) {
     const dispatch = useDispatch();

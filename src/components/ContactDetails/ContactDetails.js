@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from 'react-redux';
+import './ContactDetails.scss'
 import "bootstrap-icons/font/bootstrap-icons.css"
 
 function ContactDetails() {
@@ -9,7 +10,7 @@ function ContactDetails() {
         <div className="contact-details-block">
             {!Object.keys(contact).length && (
                 <div className="no-user-selected">
-                    <i className="bi bi-person-circle"></i>
+                    <i className="bi bi-person-circle no-user" style={{fontSize: '100px'}}></i>
                     <h4>Select a user to view their contact information.</h4>
                 </div>
             )}

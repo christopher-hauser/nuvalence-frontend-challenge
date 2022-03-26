@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ContactList from '../ContactList/ContactList';
 import ContactDetails from '../ContactDetails/ContactDetails';
 import Favorites from '../FavoritesList/FavoritesList';
+import './AddressBook.scss'
+
 import { getContacts, storeFavorites } from '../../store/contacts';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -30,14 +32,7 @@ function AddressBook() {
 
     return (
         <div id='address-book-container'>
-            <div id='search-list'>
-                {/* <form id='search-bar'>
-                    <input
-                        value={searchValue}
-                        onChange={handleChange}
-                        placeholder={"Search . . ."}
-                    />
-                </form> */}
+            <div id='contact-sidebar'>
                 <Favorites />
                 <ContactList contacts={contacts} />
                 <div id='pagination-container'>

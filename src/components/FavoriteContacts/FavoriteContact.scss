@@ -1,0 +1,75 @@
+$breakpoint-tablet: 768px;
+$breakpoint-medium: 992px;
+$breakpoint-large: 1200px;
+
+.favorite-individual-block {
+    display: flex;
+    box-sizing: border-box;
+    width: 15%;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 4px solid rgb(255, 255, 255);
+    transition: 0.2s;
+
+    h4 {
+        font-family: 'Spartan', sans-serif;
+        font-weight: 500;
+        margin: 0;
+        color: black;
+    }
+
+    @media screen and (max-width: $breakpoint-tablet ){
+        margin: 0px 5% 5px 5%;
+        padding: 5px 10px;
+        h4 {
+            font-size: 8px;
+        }
+    }
+
+    @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
+        margin: 0px 2.5% 5px 2.5%;
+        padding: 5px 10px;
+        h4 {
+            font-size: 12px;
+        }
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+        margin: 0px 2.5% 5px 2.5%;
+        padding: 5px 10px;
+        h4 {
+            font-size: 14px;
+        }
+    }
+}
+
+.favorite-individual-block:hover {
+    cursor: pointer;
+    border-bottom: 4px solid rgb(241, 182, 98);
+}
+
+.favorite-individual-block.selected {
+    border-bottom: 4px solid rgb(243, 151, 21);
+}
+
+.contact-photo-favorites {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    padding: 5px 0px;
+
+    @media screen and (max-width: $breakpoint-tablet ){
+        height: 25px;
+        width: 25px;
+    }
+
+    @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
+        height: 35px;
+        width: 35px;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+        height: 50px;
+        width: 50px;
+    }
+}
