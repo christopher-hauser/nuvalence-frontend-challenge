@@ -14,9 +14,7 @@ function FavoritesList() {
     const leftClick = () => {
         const currentIdx = favorites.indexOf(selectedContact);
         const prevContact = favorites[currentIdx - 1];
-        if (slidePosition > 0) {
-            setSlidePosition(slidePosition => slidePosition -= 1)
-        }
+
         if (prevContact) {
             dispatch(selectContact(favorites[currentIdx - 1]));
             setCurrentSlideSelected(currentIdx - 1);
@@ -27,13 +25,18 @@ function FavoritesList() {
     const rightClick = () => {
         const currentIdx = favorites.indexOf(selectedContact);
         const nextContact = favorites[currentIdx + 1];
-        // if (currentIdx > 0 && (favorites.length - (currentIdx + 1) >= 5)) {
-        //     setSlidePosition(slidePosition => slidePosition += 1)
-        // }
+        console.log(currentIdx)
+
+        if (currentIdx === -1) {
+            setSlidePosition(0);
+            dispatch(selectContact(favorites[0]));
+        }
+
         if (nextContact) {
             dispatch(selectContact(favorites[currentIdx + 1]));
             setCurrentSlideSelected(currentIdx + 1);
         }
+
         return;
     }
 
@@ -44,12 +47,18 @@ function FavoritesList() {
         })
 
         let index = selectedContactCopy ? favorites.indexOf(selectedContactCopy) : -1;
+        setCurrentSlideSelected(index);
+
+        console.log(slidePosition, favorites.length)
 
         if (index > -1) {
-            setCurrentSlideSelected(index);
-            if (index > 0 && (favorites.length - 5 >= 1) && ((index + 4) <= favorites.length)) {
+            if (index > 0 && index + 4 <= favorites.length) {
                 setSlidePosition(index - 1);
+            } else if  (slidePosition === 0 && favorites.length - 4 > 0) {
+                index === 0 ? setSlidePosition(0) : setSlidePosition(index - 1);
             }
+        } else {
+            setSlidePosition(0)
         }
     }, [selectedContact])
 

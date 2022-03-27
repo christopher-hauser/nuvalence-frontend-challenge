@@ -35,7 +35,7 @@ function ContactDetails() {
                             </div>
                             <div className="contact-detail-block">
                                 <i className="bi bi-envelope-fill contact-detail-icon"></i>
-                                <p className="contact-email">{`${contact.email}`}</p>
+                                <a href={`mailto:${contact.email}`} className="contact-email">{`${contact.email}`}</a>
                             </div>
                             <div className="contact-detail-block">
                                 <i className="bi bi-geo-alt-fill contact-detail-icon"></i>

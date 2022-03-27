@@ -11,7 +11,6 @@ $breakpoint-large: 1200px;
     display: flex;
     position: relative;
     width: 100%;
-    z-index: -1;
     background-color: rgb(0, 30, 54);
 
     @media screen and (max-width: $breakpoint-tablet ){
@@ -176,14 +175,14 @@ $breakpoint-large: 1200px;
     align-items: flex-start;
     border-bottom: $light-lines;
     margin-bottom: 6%;
-    p {
+    p, a {
         color: $light-text;
         font-family: 'Spartan', sans-serif;
     }
 
     @media screen and (max-width: $breakpoint-smallphones ) {
         margin-bottom: 1%;
-        p {
+        p,a {
             font-size: 10px;
         }
     }
@@ -191,19 +190,19 @@ $breakpoint-large: 1200px;
 
     @media screen and (min-width: $breakpoint-smallphones ) and (max-width: $breakpoint-tablet ){
         margin-bottom: 2%;
-        p {
+        p, a {
             font-size: 10px;
         }
     }
 
     @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
-        p {
+        p, a {
             font-size: 14px;
         }
     }
 
     @media screen and (min-width: $breakpoint-medium) {
-        p {
+        p, a {
             font-size: 20px;
 
             @media screen and (max-height: 700px) {
@@ -240,6 +239,7 @@ $breakpoint-large: 1200px;
 
 .contact-email {
     word-break: break-all;
+    color: $light-text;
 }
 
 .no-user-selected {
