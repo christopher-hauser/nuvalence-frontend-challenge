@@ -1,72 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import configureStore from 'redux-mock-store';
+import { mockStore, testState } from '../componentTestUtils';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
 import { mount, configure} from 'enzyme';
 import AddressBook from './AddressBook';
 
 configure({adapter: new Adapter()});
-
-let initialState = {
-    pageNo: 3,
-    contacts: {
-        contacts: [{
-            "name": {
-                "title": "mr",
-                "first": "brad",
-                "last": "gibson"
-            },
-            "location": {
-                "street": "9278 new road",
-                "city": "kilcoole",
-                "state": "waterford",
-            },
-            "email": "brad.gibson@example.com",
-            "phone": "011-962-7516",
-            "cell": "081-454-0666",
-            "id": {
-                "name": "PPS",
-                "value": "0390511T"
-            },
-            "picture": {
-                "large": "https://randomuser.me/api/portraits/men/75.jpg",
-                "medium": "https://randomuser.me/api/portraits/med/men/75.jpg",
-                "thumbnail": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
-            },
-            "nat": "IE"
-        }],
-        selectedContact: {
-            "name": {
-                "title": "mr",
-                "first": "brad",
-                "last": "gibson"
-            },
-            "location": {
-                "street": "9278 new road",
-                "city": "kilcoole",
-                "state": "waterford",
-            },
-            "email": "brad.gibson@example.com",
-            "phone": "011-962-7516",
-            "cell": "081-454-0666",
-            "id": {
-                "name": "PPS",
-                "value": "0390511T"
-            },
-            "picture": {
-                "large": "https://randomuser.me/api/portraits/men/75.jpg",
-                "medium": "https://randomuser.me/api/portraits/med/men/75.jpg",
-                "thumbnail": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
-            },
-            "nat": "IE"
-        },
-        favoriteContacts: [],
-    }
-}
-
-const middleWares = [thunk];
-const mockStore = configureStore(middleWares);
+let initialState = testState;
 let store = mockStore(initialState);
 
 describe('Address Book', () => {

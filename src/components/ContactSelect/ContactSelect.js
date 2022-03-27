@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectContact, addThisFavorite, removeThisFavorite } from '../../store/contacts'
 import './ContactSelect.scss'
 
-function Contact({ contact }) {
+function ContactSelect({ contact }) {
     const dispatch = useDispatch();
     const selected = useSelector(state => state.contacts.selectedContact);
     const favorites = useSelector(state => state.contacts.favoriteContacts);
@@ -50,8 +50,8 @@ function Contact({ contact }) {
             <div id={`contact-${contact.name.first}-${contact.name.last}`} className={isSelected ? "contact-block selected" : "contact-block"}
                 onClick={handleClick}>
                 <div className="contact-block-info">
-                    <h4 data-testid='contact-name'>{`${contact?.name.first} ${contact.name.last}`}</h4>
-                    <p data-testid='contact-location'>{`${contact?.location.state}, ${contact.location.country}`}</p>
+                    <h4>{`${contact?.name.first} ${contact.name.last}`}</h4>
+                    <p>{`${contact?.location.state}, ${contact.location.country}`}</p>
                 </div>
                 <div className="favorite-block">
                     <i className={isFavorite ? "bi bi-star-fill favorite" : "bi bi-star favorite"} onClick={handleFavorite} style={{ 'fontSize': '18px' }}></i>
@@ -61,4 +61,4 @@ function Contact({ contact }) {
     )
 }
 
-export default Contact;
+export default ContactSelect;
