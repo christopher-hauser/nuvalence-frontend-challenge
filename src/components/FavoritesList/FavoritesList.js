@@ -57,6 +57,7 @@ function FavoritesList() {
         } else {
             setSlidePosition(0)
         }
+        
     }, [selectedContact])
 
     return (

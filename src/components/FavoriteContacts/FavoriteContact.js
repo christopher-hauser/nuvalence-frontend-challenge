@@ -15,7 +15,7 @@ function FavoriteContact( { contact }) {
     return (
         <div className={isSelected ? "favorite-individual-block selected" : "favorite-individual-block"} onClick={handleChange}>
             <img src={contact.picture.large} alt={`${contact.name.first}-${contact.name.last}`} className='contact-photo-favorites' />
-            <h4 data-testid='contact-name'>{`${contact?.name.first}`}</h4>
+            <h4>{`${contact?.name.first}`}</h4>
         </div>
     )
 }
