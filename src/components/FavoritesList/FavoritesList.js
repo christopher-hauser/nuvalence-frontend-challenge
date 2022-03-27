@@ -25,7 +25,6 @@ function FavoritesList() {
     const rightClick = () => {
         const currentIdx = favorites.indexOf(selectedContact);
         const nextContact = favorites[currentIdx + 1];
-        console.log(currentIdx)
 
         if (currentIdx === -1) {
             setSlidePosition(0);
@@ -48,8 +47,6 @@ function FavoritesList() {
 
         let index = selectedContactCopy ? favorites.indexOf(selectedContactCopy) : -1;
         setCurrentSlideSelected(index);
-
-        console.log(slidePosition, favorites.length)
 
         if (index > -1) {
             if (index > 0 && index + 4 <= favorites.length) {
