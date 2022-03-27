@@ -1,5 +1,6 @@
 #contact-list {
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
     overflow-y: scroll;
     height: 100%;

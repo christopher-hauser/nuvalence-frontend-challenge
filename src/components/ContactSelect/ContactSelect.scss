@@ -1,8 +1,8 @@
 $nav-and-select: rgb(182, 201, 218);
 $light-lines: rgb(196, 196, 196);
-$light-text: rgb(73, 73, 73);
-$breakpoint-smallphones: 500px;
-$breakpoint-tablet: 768px;
+$light-text: rgb(48, 48, 48);
+$breakpoint-smallphones: 420px;
+$breakpoint-tablet: 767px;
 $breakpoint-medium: 992px;
 $breakpoint-large: 1200px;
 
@@ -17,6 +17,7 @@ $breakpoint-large: 1200px;
         margin: 0;
         color: $light-text;
         font-weight: 600;
+        font-size: 14px
     };
 
     p {

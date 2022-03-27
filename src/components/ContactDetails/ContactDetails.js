@@ -11,7 +11,7 @@ function ContactDetails() {
             <div className="contact-details-block">
                 {!Object.keys(contact).length && (
                     <div className="no-user-selected">
-                        <i className="bi bi-person-circle no-user" style={{ fontSize: '100px' }}></i>
+                        <i className="bi bi-person-circle no-user" style={{ fontSize: '80px' }}></i>
                         <h4>Select a user to view their contact information.</h4>
                     </div>
                 )}

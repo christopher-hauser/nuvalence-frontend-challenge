@@ -56,7 +56,7 @@ function FavoritesList() {
     return (
         <div id='favorites-block'>
             <div id='your-favorites'>
-                <i className="bi bi-star-fill favorite static" style={{ 'fontSize': '30px' }}></i>
+                <i className="bi bi-star-fill favorite static" style={{ 'fontSize': '24px' }}></i>
                 <h3>Favorites</h3>
             </div>
             <div id='favorites-scroll-container'>

@@ -1,7 +1,7 @@
 $light-lines: rgb(196, 196, 196);
-$light-text: rgb(73, 73, 73);
-$breakpoint-smallphones: 500px;
-$breakpoint-tablet: 768px;
+$light-text: rgb(48, 48, 48);
+$phones: 500px;
+$breakpoint-tablet: 767px;
 $breakpoint-medium: 992px;
 $breakpoint-large: 1200px;
 
@@ -11,6 +11,9 @@ $breakpoint-large: 1200px;
 
     @media screen and (max-width: $breakpoint-tablet ){
         margin: 0;
+        position: sticky;
+        position: -webkit-sticky;
+        top: 8%;
     }
 
     @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
@@ -27,18 +30,14 @@ $breakpoint-large: 1200px;
 
 #list-details-container {
     display: flex;
+    justify-content: space-between;
+    height: 72vh;
     @media screen and (max-width: $breakpoint-tablet ){
-        height: 80vh;
+        flex-direction: column-reverse;
     }
 
-    @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
-        justify-content: space-between;
-        height: 70vh;
-    }
-
-    @media screen and (min-width: $breakpoint-medium) {
-        justify-content: space-between;
-        height: 70vh;
+    @media screen and (min-width: $breakpoint-medium) and (min-height: 500px) {
+        height: 60vh
     }
 }
 
@@ -48,6 +47,12 @@ $breakpoint-large: 1200px;
     align-items: space-between;
     width: 50%;
     height: 100%;
+
+    @media screen and (max-width: $breakpoint-tablet ){
+        width: 100%;
+        height: 65%;
+
+    }
 }
 
 #details-sidebar {
@@ -55,11 +60,30 @@ $breakpoint-large: 1200px;
     width: 50%;
     @media screen and (max-width: $breakpoint-tablet ){
         padding: 0;
+        width: 100%;
+        height: 35%;
+        position: sticky;
+        position: -webkit-sticky;
+        @media screen and (max-height: 700px) {
+            top: 26%;
+        }
+
+        @media screen and (min-height: 700px) {
+            top: 22%;
+        }
+
     }
 
     @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
         position: relative;
-        bottom: 20%;
+
+        @media screen and (max-height: 1000px) {
+            bottom: 20%;
+        }
+
+        @media screen and (min-height: 1000px) {
+            bottom: 10%;
+        }
     }
 
     @media screen and (min-width: $breakpoint-medium) {
@@ -76,13 +100,13 @@ $breakpoint-large: 1200px;
     background-color: rgb(182, 201, 218);
     border-radius: 40px;
 
-    @media screen and (max-width: $breakpoint-smallphones ){
+    @media screen and (max-width: $phones ){
         height: 30px;
         margin-top: 0;
         width: 90%;
     }
 
-    @media screen and (min-width: $breakpoint-smallphones) and (max-width: $breakpoint-tablet) {
+    @media screen and (min-width: $phones) and (max-width: $breakpoint-tablet) {
         height: 40px;
         margin-top: 0;
         width: 90%;

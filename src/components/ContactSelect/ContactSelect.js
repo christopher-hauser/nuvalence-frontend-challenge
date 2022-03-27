@@ -54,7 +54,7 @@ function Contact({ contact }) {
                     <p data-testid='contact-location'>{`${contact?.location.state}, ${contact.location.country}`}</p>
                 </div>
                 <div className="favorite-block">
-                    <i className={isFavorite ? "bi bi-star-fill favorite" : "bi bi-star favorite"} onClick={handleFavorite}></i>
+                    <i className={isFavorite ? "bi bi-star-fill favorite" : "bi bi-star favorite"} onClick={handleFavorite} style={{ 'fontSize': '18px' }}></i>
                 </div>
             </div>
         </>

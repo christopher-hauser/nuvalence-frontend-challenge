@@ -1,7 +1,8 @@
 $nav-and-select: rgb(182, 201, 218);
 $light-lines: rgb(196, 196, 196);
-$light-text: rgb(73, 73, 73);
-$breakpoint-tablet: 768px;
+$light-text: rgb(48, 48, 48);
+$breakpoint-smallphones: 420px;
+$breakpoint-tablet: 767px;
 $breakpoint-medium: 992px;
 $breakpoint-large: 1200px;
 
@@ -18,7 +19,13 @@ $breakpoint-large: 1200px;
     }
 
     @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
-        margin: 5% 10%;
+        @media screen and (max-height: 1000px) {
+            margin: 5% 10%;
+        }
+
+        @media screen and (min-height: 1000px) {
+            margin: 35% 10%;
+        }
     }
 
     @media screen and (min-width: $breakpoint-medium) {
@@ -37,13 +44,25 @@ $breakpoint-large: 1200px;
     align-items: flex-start;
     transition: 0.5s;
     z-index: 10;
+    overflow-y: hidden;
     p {
         margin: 0;
     }
 
-    @media screen and (max-width: $breakpoint-tablet ){
-        margin: 0%;
-        padding: 10% 5% 10% 5%;
+    @media screen and (max-width: $breakpoint-smallphones ){
+        margin: 0;
+        padding: 5%;
+        justify-content: center;
+        border-top: 1px solid  rgb(0, 54, 99);
+        border-bottom: 2px solid rgb(0, 54, 99);
+    }
+
+    @media screen and (min-width: $breakpoint-smallphones) and (max-width: $breakpoint-tablet ){
+        margin: 0;
+        padding: 2% 10% 2% 10%;
+        justify-content: center;
+        border-top: 1px solid  rgb(0, 54, 99);
+        border-bottom: 2px solid rgb(0, 54, 99);
     }
 
     @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
@@ -70,8 +89,8 @@ $breakpoint-large: 1200px;
     border-radius: 200px;
 
     @media screen and (max-width: $breakpoint-tablet ){
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
     }
 
     @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
@@ -82,7 +101,13 @@ $breakpoint-large: 1200px;
     @media screen and (min-width: $breakpoint-medium) {
         height: 100px;
         width: 100px;
+
+        @media screen and (max-height: 700px) {
+            height: 75px;
+            width: 75px;
+        }
     }
+
 }
 
 .contact-details-top {
@@ -95,22 +120,41 @@ $breakpoint-large: 1200px;
     border-bottom: 1px solid $light-lines;
     h3 {
         font-family: 'Spartan', sans-serif;
-        @media screen and (max-width: $breakpoint-tablet ){
-            font-size: 18px;
-            font-weight: 400;
-            margin: 0 0 0 10px;
-        }
+        font-weight: 400;
+    }
 
-        @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
+    @media screen and (max-width: $breakpoint-smallphones ){
+        padding-bottom: 10px;
+        h3 {
+            font-size: 12px;
+            margin: 0 0 0 5px;
+        }
+    }
+
+    @media screen and (min-width: $breakpoint-smallphones ) and( max-width: $breakpoint-tablet){
+        padding-bottom: 10px;
+        h3 {
+            font-size: 14px;
+            margin: 0 0 0 5px;
+        }
+    }
+
+    @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
+        h3 {
             font-size: 24px;
-            font-weight: 400;
             margin: 0 0 0 20px;
         }
+    }
 
-        @media screen and (min-width: $breakpoint-medium) {
+    @media screen and (min-width: $breakpoint-medium) {
+        h3 {
             font-size: 32px;
-            font-weight: 400;
             margin: 0 0 0 40px;
+
+            @media screen and (max-height: 700px) {
+                font-size: 24px;
+                margin: 0 0 0 20px;
+            }
         }
     }
 }
@@ -119,8 +163,12 @@ $breakpoint-large: 1200px;
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-    margin-top: 5%;
     width: 100%;
+    margin-top: 5%;
+
+    @media screen and (max-width: $breakpoint-tablet ){
+        margin-top: 2%;
+    }
 }
 
 .contact-detail-block {
@@ -130,18 +178,40 @@ $breakpoint-large: 1200px;
     margin-bottom: 6%;
     p {
         color: $light-text;
-        font-family: 'Spartan', sans-serif;;
-        @media screen and (max-width: $breakpoint-tablet ){
-                font-size: 10px;
+        font-family: 'Spartan', sans-serif;
+    }
+
+    @media screen and (max-width: $breakpoint-smallphones ) {
+        margin-bottom: 1%;
+        p {
+            font-size: 10px;
+        }
+    }
+
+
+    @media screen and (min-width: $breakpoint-smallphones ) and (max-width: $breakpoint-tablet ){
+        margin-bottom: 2%;
+        p {
+            font-size: 10px;
+        }
+    }
+
+    @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
+        p {
+            font-size: 14px;
+        }
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+        p {
+            font-size: 20px;
+
+            @media screen and (max-height: 700px) {
+                font-size: 14px;
+            }
         }
 
-        @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
-                font-size: 16px;
-        }
 
-        @media screen and (min-width: $breakpoint-medium) {
-                font-size: 20px;
-        }
     }
 }
 
@@ -153,11 +223,19 @@ $breakpoint-large: 1200px;
 .phone-container {
     display: flex;
     flex-direction: column;
+
+    @media screen and (max-width: $breakpoint-tablet ){
+        flex-direction: row;
+    }
 }
 
 .inner-phone-container {
     display: flex;
     margin-bottom: 10px;
+
+    @media screen and (max-width: $breakpoint-tablet ){
+        margin-right: 20px;
+    }
 }
 
 .contact-email {

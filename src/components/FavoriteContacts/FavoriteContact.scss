@@ -1,4 +1,4 @@
-$breakpoint-tablet: 768px;
+$breakpoint-tablet: 767px;
 $breakpoint-medium: 992px;
 $breakpoint-large: 1200px;
 
@@ -22,7 +22,7 @@ $breakpoint-large: 1200px;
     @media screen and (max-width: $breakpoint-tablet ){
         margin: 0px 2.5% 5px 2.5%;
         h4 {
-            font-size: 12px;
+            font-size: 10px;
         }
     }
 
@@ -65,8 +65,8 @@ $breakpoint-large: 1200px;
     padding: 5px 0px;
 
     @media screen and (max-width: $breakpoint-tablet ){
-        height: 45px;
-        width: 45px;
+        height: 35px;
+        width: 35px;
     }
 
     @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
