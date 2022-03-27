@@ -11,7 +11,6 @@ $breakpoint-large: 1200px;
 #your-favorites {
     display: flex;
     align-items: center;
-    // padding-left: 10px;
     h3 {
         margin: 0;
         color: rgb(0, 0, 0);
@@ -99,4 +98,10 @@ $breakpoint-large: 1200px;
 
 .carousel-button.inactive {
     background-color: rgb(84, 88, 92);
+}
+
+#no-favorites {
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
 }

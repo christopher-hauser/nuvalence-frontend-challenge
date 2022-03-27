@@ -57,7 +57,7 @@ function FavoritesList() {
         } else {
             setSlidePosition(0)
         }
-        
+
     }, [selectedContact])
 
     return (
@@ -70,6 +70,7 @@ function FavoritesList() {
                 <button
                     onClick={leftClick}
                     className={currentSlideSelected > 0 ? 'carousel-button' : 'carousel-button inactive' }
+                    style={{visibility: favorites.length === 0 ? 'hidden' : 'visible'}}
                 >
                     &#60;
                 </button>
@@ -80,7 +81,7 @@ function FavoritesList() {
                             <FavoriteContact contact={contact} key={idx} />
                         ))}
                         {favorites.length === 0 && (
-                            <p>Tip: Favorite contacts for quick access.</p>
+                            <p id='no-favorites'>Tip: Favorite contacts for quick access.</p>
                         )}
 
                     </div>
@@ -88,6 +89,7 @@ function FavoritesList() {
                 <button
                     onClick={rightClick}
                     className={currentSlideSelected < favorites.length - 1 ? 'carousel-button' : 'carousel-button inactive' }
+                    style={{visibility: favorites.length === 0 ? 'hidden' : 'visible'}}f
                 >
                     &#62;
                 </button>
