@@ -8,6 +8,14 @@ import contactsReducer,
 
 const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
+const mockResponse = ( status, statusText, response ) => {
+    return new window.Response(response, {
+        status: status,
+        headers: {
+            'Content-type': 'application/json'
+        }
+    })
+};
 
 describe('store', () => {
     test('should return the initial state', () => {
@@ -29,6 +37,22 @@ describe('actions', () => {
             'favoriteContacts': []
         })
     })
+
+    it('dispatches getContacts with a successful API call', () => {
+        window.fetch = jest.fn().mockImplementation(() => (
+            Promise.resolve(mockResponse(200, null, '{"results": [{"name": {"first": "joe", "last": "smith"}}]}'))
+        ))
+
+        return store.dispatch(getContacts(1)).then(() => {
+            const expectedActions = store.getActions();
+            expect(expectedActions.length).toBe(1);
+            expect(expectedActions).toContainEqual({
+                'type': 'contacts/LOAD_CONTACTS',
+                'payload': [{name: {first: "joe", last: "smith"}}]
+            })
+        })
+    })
+
 
     it('dispatches selectContact', () => {
         store.dispatch(selectContact({ name: 'test' }))
@@ -75,7 +99,18 @@ describe('reducer', () => {
         }
     })
 
-    it('updates selectedContact correctly', () => {
+    it('updates contacts on loadContacts', () => {
+        const action = loadContacts([{ name: "test" }]);
+        let finalState = contactsReducer(state, action);
+        expect(finalState).toStrictEqual({
+            'contacts': [{ name: "test" }],
+            'selectedContact': {},
+            'favoriteContacts': []
+        })
+    })
+
+
+    it('updates selectedContact on selectContact', () => {
         const action = loadSelectedContact({ name: "test" });
         let finalState = contactsReducer(state, action);
         expect(finalState).toStrictEqual({
@@ -85,7 +120,7 @@ describe('reducer', () => {
         })
     })
 
-    it('updates loadFavorites correctly', () => {
+    it('updates favorites on loadFavorites', () => {
         const action = loadFavorites([{ name: "test" }, { name: 'test2' }]);
         let finalState = contactsReducer(state, action);
         expect(finalState).toStrictEqual({
@@ -95,7 +130,7 @@ describe('reducer', () => {
         })
     })
 
-    it('updates addFavorite correctly', () => {
+    it('updates favorites on addFavorite', () => {
         state = {
             'contacts': [],
             'selectedContact': {},
@@ -112,7 +147,7 @@ describe('reducer', () => {
         })
     })
 
-    it('updates removeFavorite correctly', () => {
+    it('updates favorites on removeFavorite', () => {
         state = {
             'contacts': [],
             'selectedContact': {},
@@ -142,10 +177,12 @@ describe('reducer', () => {
         expect(finalState).toStrictEqual({
             'contacts': [],
             'selectedContact': {},
-            'favoriteContacts': [{name: {
-                first: "firstname",
-                last: "lastname"
-            }}]
+            'favoriteContacts': [{
+                name: {
+                    first: "firstname",
+                    last: "lastname"
+                }
+            }]
         })
     })
 })
