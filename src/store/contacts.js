@@ -4,27 +4,27 @@ const LOAD_FAVORITES = 'contacts/LOAD_FAVORITES';
 const ADD_FAVORITE = 'contacts/ADD_FAVORITE';
 const REMOVE_FAVORITE = 'contacts/REMOVE_FAVORITE';
 
-const loadContacts = contacts => ({
+export const loadContacts = contacts => ({
     type: LOAD_CONTACTS,
     payload: contacts
 })
 
-const loadSelectedContact = contact => ({
+export const loadSelectedContact = contact => ({
     type: SELECT_CONTACT,
     payload: contact
 })
 
-const loadFavorites = favorites => ({
+export const loadFavorites = favorites => ({
     type: LOAD_FAVORITES,
     payload: favorites
 })
 
-const addFavorite = favorite => ({
+export const addFavorite = favorite => ({
     type: ADD_FAVORITE,
     payload: favorite
 })
 
-const removeFavorite = favorite => ({
+export const removeFavorite = favorite => ({
     type: REMOVE_FAVORITE,
     payload: favorite
 })
