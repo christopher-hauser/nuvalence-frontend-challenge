@@ -1,6 +1,10 @@
 $nav-and-select: rgb(182, 201, 218);
 $light-lines: rgb(196, 196, 196);
 $light-text: rgb(73, 73, 73);
+$breakpoint-smallphones: 500px;
+$breakpoint-tablet: 768px;
+$breakpoint-medium: 992px;
+$breakpoint-large: 1200px;
 
 .contact-block {
     display: flex;
@@ -17,8 +21,23 @@ $light-text: rgb(73, 73, 73);
 
     p {
         margin: 4px 0px;
-        font-size: 14px;
         color: $light-text;
+
+        @media screen and (max-width: $breakpoint-smallphones ){
+            font-size: 10px;
+        }
+
+        @media screen and (min-width: $breakpoint-smallphones) and (max-width: $breakpoint-tablet) {
+            font-size: 12px;
+        }
+
+        @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
+            font-size: 14px;
+        }
+
+        @media screen and (min-width: $breakpoint-medium) {
+            font-size: 18px;
+        }
     };
 }
 

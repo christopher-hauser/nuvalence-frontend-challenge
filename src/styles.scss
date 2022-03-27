@@ -1,6 +1,7 @@
 $nav-and-select: rgb(182, 201, 218);
 $light-lines: rgb(196, 196, 196);
 $light-text: rgb(73, 73, 73);
+$breakpoint-smallphones: 500px;
 $breakpoint-tablet: 768px;
 $breakpoint-medium: 992px;
 $breakpoint-large: 1200px;
@@ -9,7 +10,11 @@ $breakpoint-large: 1200px;
 * {
     font-family: 'Karla', Helvetica, Arial, sans-serif;
     font-weight: 400;
-    @media screen and (max-width: $breakpoint-tablet ){
+    @media screen and (max-width: $breakpoint-smallphones ){
+        font-size: 10px;
+    }
+
+    @media screen and (min-width: $breakpoint-smallphones) and (max-width: $breakpoint-tablet) {
         font-size: 12px;
     }
 
@@ -25,7 +30,7 @@ $breakpoint-large: 1200px;
 
 body {
     margin: 0;
-    min-width: 300px;
+    min-width: 280px;
 }
 
 p {
@@ -45,12 +50,21 @@ button {
     border-radius: 50px;
     transition: 0.2s;
     text-align: center;
-    @media screen and (max-width: $breakpoint-tablet ){
+
+    @media screen and (max-width: $breakpoint-smallphones ){
+        font-size: 8px;
+        width: 15px;
+        height: 15px;
+        margin: 0 2px;
+    }
+
+    @media screen and (min-width: $breakpoint-smallphones) and (max-width: $breakpoint-tablet) {
         font-size: 12px;
         width: 20px;
         height: 20px;
         margin: 0 5px;
     }
+
 
     @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
         font-size: 14px;

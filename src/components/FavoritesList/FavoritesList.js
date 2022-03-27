@@ -27,9 +27,9 @@ function FavoritesList() {
     const rightClick = () => {
         const currentIdx = favorites.indexOf(selectedContact);
         const nextContact = favorites[currentIdx + 1];
-        if (currentIdx > 0) {
-            setSlidePosition(slidePosition => slidePosition += 1)
-        }
+        // if (currentIdx > 0 && (favorites.length - (currentIdx + 1) >= 5)) {
+        //     setSlidePosition(slidePosition => slidePosition += 1)
+        // }
         if (nextContact) {
             dispatch(selectContact(favorites[currentIdx + 1]));
             setCurrentSlideSelected(currentIdx + 1);
@@ -44,14 +44,11 @@ function FavoritesList() {
         })
 
         let index = selectedContactCopy ? favorites.indexOf(selectedContactCopy) : -1;
-        console.log(index);
 
         if (index > -1) {
             setCurrentSlideSelected(index);
-            if (index > 0) {
+            if (index > 0 && (favorites.length - 5 >= 1) && ((index + 4) <= favorites.length)) {
                 setSlidePosition(index - 1);
-            } else {
-                setSlidePosition(0);
             }
         }
     }, [selectedContact])
@@ -65,8 +62,7 @@ function FavoritesList() {
             <div id='favorites-scroll-container'>
                 <button
                     onClick={leftClick}
-                    className='carousel-button'
-                    style={{ visibility: currentSlideSelected > 0 ? 'visible' : 'hidden' }}
+                    className={currentSlideSelected > 0 ? 'carousel-button' : 'carousel-button inactive' }
                 >
                     &#60;
                 </button>
@@ -84,8 +80,7 @@ function FavoritesList() {
                 </div>
                 <button
                     onClick={rightClick}
-                    className='carousel-button'
-                    style={{ visibility: currentSlideSelected < favorites.length - 1 ? 'visible' : 'hidden' }}
+                    className={currentSlideSelected < favorites.length - 1 ? 'carousel-button' : 'carousel-button inactive' }
                 >
                     &#62;
                 </button>
