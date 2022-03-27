@@ -43,7 +43,6 @@ function ContactDetails() {
                                     <p>{`${contact.location.street.number} ${contact.location.street.name}`}</p>
                                     <p>{`${contact.location.city}, ${contact.location.state}`}</p>
                                     <p>{`${contact.location.country}`}</p>
-
                                 </div>
                             </div>
                         </div>
