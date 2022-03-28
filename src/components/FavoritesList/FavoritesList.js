@@ -61,18 +61,18 @@ function FavoritesList() {
         setCurrentSlideSelected(selectedIdx);
 
         if (selectedIdx > -1) {
-            if (selectedIdx > 0 && selectedIdx + 4 <= favorites.length) {
+            if (selectedIdx > 0 && selectedIdx + 4 <= favorites?.length) {
                 setSlidePosition(selectedIdx - 1);
-            } else if ((selectedIdx > 0 && favorites.length - selectedIdx === 2) || favorites.length - selectedIdx === 3) {
+            } else if ((selectedIdx > 0 && favorites?.length - selectedIdx === 2) || favorites.length - selectedIdx === 3) {
                 setSlidePosition(favorites.length - 5)
-            } else if (selectedIdx === 0 && favorites.length - 4 > 0) {
+            } else if (selectedIdx === 0 && favorites?.length - 4 > 0) {
                 selectedIdx === 0 ? setSlidePosition(0) : setSlidePosition(selectedIdx - 1);
             }
         }
     }, [selectedContact, slidePosition])
 
     useEffect(() => {
-        if (favorites.length - 4 > slidePosition) {
+        if (favorites?.length - 4 > slidePosition) {
             setSlidePosition(favorites.length - 5)
         }
     }, [favorites])
@@ -87,7 +87,7 @@ function FavoritesList() {
                 <button
                     onClick={leftClick}
                     className={currentSlideSelected > 0 ? 'carousel-button' : 'carousel-button inactive'}
-                    style={{ visibility: favorites.length === 0 ? 'hidden' : 'visible' }}
+                    style={{ visibility: favorites?.length === 0 ? 'hidden' : 'visible' }}
                     aria-label='Go to previous contact'
                 >
                     &#60;
@@ -95,10 +95,10 @@ function FavoritesList() {
                 <div id='favorites-carousel'>
                     <div id='favorites-track'
                         style={{ 'transform': `translateX(-${slidePosition * 20}%)` }}>
-                        {favorites.length > 0 && favorites.map((contact, idx) => (
+                        {favorites?.length > 0 && favorites?.map((contact, idx) => (
                             <FavoriteContact contact={contact} key={idx} />
                         ))}
-                        {favorites.length === 0 && (
+                        {favorites?.length === 0 && (
                             <p id='no-favorites'>Tip: Favorite contacts for quick access.</p>
                         )}
 
@@ -106,8 +106,8 @@ function FavoritesList() {
                 </div>
                 <button
                     onClick={rightClick}
-                    className={currentSlideSelected < favorites.length - 1 ? 'carousel-button' : 'carousel-button inactive'}
-                    style={{ visibility: favorites.length === 0 ? 'hidden' : 'visible' }}
+                    className={currentSlideSelected < favorites?.length - 1 ? 'carousel-button' : 'carousel-button inactive'}
+                    style={{ visibility: favorites?.length === 0 ? 'hidden' : 'visible' }}
                     aria-label='Go to next contact'
                 >
                     &#62;
