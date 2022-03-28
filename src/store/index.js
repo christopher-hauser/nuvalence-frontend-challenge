@@ -6,19 +6,19 @@ const rootReducer = combineReducers({
     contacts
 })
 
-let enhancer;
+let enhancer = applyMiddleware(thunk);;
 
-if (process.env.NODE_ENV === 'production') {
-    enhancer = applyMiddleware(thunk);
-} else {
-    const logger = require('redux-logger').default;
-    const composeEnhancers =
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-    enhancer = composeEnhancers(applyMiddleware(thunk, logger));
-}
+// if (process.env.NODE_ENV === 'production') {
+//     enhancer = applyMiddleware(thunk);
+// } else {
+//     const logger = require('redux-logger').default;
+//     const composeEnhancers =
+//         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+//     enhancer = composeEnhancers(applyMiddleware(thunk, logger));
+// }
 
-const configureStore = (preloadedState) => {
-    return createStore(rootReducer, preloadedState, enhancer);
+const configureStore = () => {
+    return createStore(rootReducer, window.__PRELOADED_STATE_, enhancer);
 };
 
 export default configureStore;
