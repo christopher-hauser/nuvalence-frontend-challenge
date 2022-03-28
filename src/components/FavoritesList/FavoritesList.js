@@ -71,6 +71,7 @@ function FavoritesList() {
                     onClick={leftClick}
                     className={currentSlideSelected > 0 ? 'carousel-button' : 'carousel-button inactive' }
                     style={{visibility: favorites.length === 0 ? 'hidden' : 'visible'}}
+                    aria-label='Go to previous contact'
                 >
                     &#60;
                 </button>
@@ -89,7 +90,8 @@ function FavoritesList() {
                 <button
                     onClick={rightClick}
                     className={currentSlideSelected < favorites.length - 1 ? 'carousel-button' : 'carousel-button inactive' }
-                    style={{visibility: favorites.length === 0 ? 'hidden' : 'visible'}}f
+                    style={{visibility: favorites.length === 0 ? 'hidden' : 'visible'}}
+                    aria-label='Go to next contact'
                 >
                     &#62;
                 </button>

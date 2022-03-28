@@ -62,3 +62,48 @@ $breakpoint-large: 1200px;
         color: black;
     }
 }
+
+.contact-block-info {
+    h4 {
+        margin: 0;
+        color: $light-text;
+        font-weight: 600;
+        @media screen and (max-width: $breakpoint-smallphones ){
+            font-size: 12px;
+        }
+
+        @media screen and (min-width: $breakpoint-smallphones) and (max-width: $breakpoint-tablet) {
+            font-size: 14px;
+        }
+
+        @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
+            font-size: 16px;
+        }
+
+        @media screen and (min-width: $breakpoint-medium) {
+            font-size: 18px;
+        }
+
+    };
+
+    p {
+        margin: 4px 0px;
+        color: $light-text;
+
+        @media screen and (max-width: $breakpoint-smallphones ){
+            font-size: 10px;
+        }
+
+        @media screen and (min-width: $breakpoint-smallphones) and (max-width: $breakpoint-tablet) {
+            font-size: 12px;
+        }
+
+        @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
+            font-size: 14px;
+        }
+
+        @media screen and (min-width: $breakpoint-medium) {
+            font-size: 16px;
+        }
+    };
+}

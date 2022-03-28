@@ -32,18 +32,29 @@ function AddressBook() {
                 <div id='contact-sidebar'>
                     <ContactList contacts={contacts} />
                     <div id='pagination-container'>
-                        <button onClick={e => pageNo === 1 ? '' : setPageNo(pageNo => pageNo -= 1)} className='left-arrow'>←</button>
-                        <button onClick={e => setPageNo(parseInt(e.target.innerText))} className={pageNo === 1 ? 'page-selected' : ''} >1</button>
-                        <button onClick={e => setPageNo(parseInt(e.target.innerText))} className={pageNo === 2 ? 'page-selected' : ''}>2</button>
+                        <button onClick={e => pageNo === 1 ? '' : setPageNo(pageNo => pageNo -= 1)} className='left-arrow' aria-label='Go to previous page'>←</button>
+                        <button onClick={e => setPageNo(parseInt(e.target.innerText))} className={pageNo === 1 ? 'page-selected' : ''} aria-label='Go to page 1' >1</button>
+                        <button onClick={e => setPageNo(parseInt(e.target.innerText))} className={pageNo === 2 ? 'page-selected' : ''} aria-label='Go to page 2'>2</button>
                         {pageNo <= 4 && (
-                            <button onClick={e => setPageNo(parseInt(e.target.innerText))} className={pageNo === 3 ? 'page-selected' : ''}>3</button>
+                            <button onClick={e => setPageNo(parseInt(e.target.innerText))} className={pageNo === 3 ? 'page-selected' : ''} aria-label='Go to page 3'>3</button>
                         )}
                         {pageNo > 4 && (
                             <p id='page-ellipses'>. . .</p>
                         )}
-                        <button onClick={e => setPageNo(parseInt(e.target.innerText))} className={pageNo === 4 || pageNo > 4 ? 'page-selected' : ''}>{pageNo <= 4 ? 4 : pageNo}</button>
-                        <button onClick={e => setPageNo(parseInt(e.target.innerText))}>{pageNo <= 4 ? 5 : pageNo + 1}</button>
-                        <button onClick={e => setPageNo(pageNo => pageNo += 1)} className='right-arrow'>&rarr;</button>
+                        <button onClick={
+                            e => setPageNo(parseInt(e.target.innerText))}
+                            className={pageNo === 4 || pageNo > 4 ? 'page-selected' : ''}
+                            aria-label={`Go to page ${pageNo}`}
+                        >
+                            {pageNo <= 4 ? 4 : pageNo}
+                        </button>
+                        <button
+                            onClick={e => setPageNo(parseInt(e.target.innerText))}
+                            aria-label={`Go to page ${pageNo + 1}`}
+                        >
+                            {pageNo <= 4 ? 5 : pageNo + 1}
+                        </button>
+                        <button onClick={e => setPageNo(pageNo => pageNo += 1)} className='right-arrow' aria-label='next page'>&rarr;</button>
                     </div>
                 </div>
                 <div id='details-sidebar'>

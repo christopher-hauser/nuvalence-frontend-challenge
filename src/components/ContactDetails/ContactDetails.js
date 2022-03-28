@@ -25,20 +25,20 @@ function ContactDetails() {
                         <div className="contact-details-bottom">
                             <div className="contact-detail-block phone-container">
                                 <div className="inner-phone-container">
-                                    <i className="bi bi-tablet-fill contact-detail-icon"></i>
+                                    <i className="bi bi-tablet-fill contact-detail-icon" aria-hidden={true}></i>
                                     <p>{`${contact.cell}`}</p>
                                 </div>
                                 <div className="inner-phone-container">
-                                    <i className="bi bi-telephone-fill contact-detail-icon"></i>
+                                    <i className="bi bi-telephone-fill contact-detail-icon" aria-hidden={true}></i>
                                     <p>{`${contact.phone}`}</p>
                                 </div>
                             </div>
                             <div className="contact-detail-block">
-                                <i className="bi bi-envelope-fill contact-detail-icon"></i>
+                                <i className="bi bi-envelope-fill contact-detail-icon" aria-hidden={true}></i>
                                 <a href={`mailto:${contact.email}`} className="contact-email">{`${contact.email}`}</a>
                             </div>
                             <div className="contact-detail-block">
-                                <i className="bi bi-geo-alt-fill contact-detail-icon"></i>
+                                <i className="bi bi-geo-alt-fill contact-detail-icon" aria-hidden={true}></i>
                                 <div>
                                     <p>{`${contact.location.street.number} ${contact.location.street.name}`}</p>
                                     <p>{`${contact.location.city}, ${contact.location.state}`}</p>

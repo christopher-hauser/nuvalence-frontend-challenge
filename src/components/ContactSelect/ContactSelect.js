@@ -48,13 +48,18 @@ function ContactSelect({ contact }) {
     return (
         <>
             <div id={`contact-${contact.name.first}-${contact.name.last}`} className={isSelected ? "contact-block selected" : "contact-block"}
-                onClick={handleClick}>
+                onClick={handleClick} aria-label={`${contact.name.first}-${contact.name.last}`}>
                 <div className="contact-block-info">
                     <h4>{`${contact?.name.first} ${contact.name.last}`}</h4>
                     <p>{`${contact?.location.state}, ${contact.location.country}`}</p>
                 </div>
                 <div className="favorite-block">
-                    <i className={isFavorite ? "bi bi-star-fill favorite" : "bi bi-star favorite"} onClick={handleFavorite} style={{ 'fontSize': '18px' }}></i>
+                    <i
+                        className={isFavorite ? "bi bi-star-fill favorite" : "bi bi-star favorite"}
+                        onClick={handleFavorite}
+                        style={{ 'fontSize': '18px' }}
+                        aria-label={isFavorite ? 'Favorite User' : 'Unfavorite User'}
+                        ></i>
                 </div>
             </div>
         </>
