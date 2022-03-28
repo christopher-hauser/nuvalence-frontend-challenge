@@ -1,71 +1,46 @@
-# Getting Started with Create React App
+# Nuvalence Front End Challenge - Address Book
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Deployment Instructions
 
-## Available Scripts
+### How to Deploy to AWS Elastic Beanstalk
 
-In the project directory, you can run:
+### How to Run Locally
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Summary
+The assignment provided was to create an address book web client that should display a list of persons from the Random User API (https://randomuser.me/).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The main criteria was as follows:
+- User should see the list of persons from the address book
+- User should be able to select a person from the list and navigate to the details page
+- User should be able to see the first name, last name, and phone number on the details page
 
-### `npm test`
+### Overall Approach
+When I first approached this project, I thought about two different kinds of address books: one that acts like a directory (i.e. a list of employees on a company website), and one that
+behaves more like a personal contact list (i.e. the one you might find on your phone). The former is pretty simple - you pull the information from the database or API and display it on the page. However, I was hoping to create something a bit more interactive, like a personal contact list where you can favorite contacts, add notes, update information, and more. That is the
+premise for the application I built.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Features
+- Contact Selection
+The most basic, but integral feature on this site is the ability to select a contact and render their information. Users are able to click on a user from the list (displayed on the left-hand side for large screens, bottom half of the screen on smaller ones) and display information including name, phone numbers (cell and home), email, and home address. This is done with React and
+Redux state management.
 
-### `npm run build`
+Redux is implemented to store the current page of contacts, which is pulled out of state by the Contact List component and passed as props down to each individual Contact Select component. This is what creates the clickable list of contacts. When one of those individual contacts is clicked, that contact information is sent to the Redux state, where it can be accessed by the Contact Details component. This is what renders the full contact information for each individual.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Mobile Responsiveness
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Next Steps and Constraints
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Technologies Implemented
+#### Site
+- React
+- Redux
+- JavaScript
+- Sass
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# nuvalence-frontend-challenge
+#### Testing
+- React Testing Library
+- Jest
+- Enzyme
