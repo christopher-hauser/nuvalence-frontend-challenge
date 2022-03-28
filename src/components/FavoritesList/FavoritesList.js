@@ -11,9 +11,26 @@ function FavoritesList() {
     const favorites = useSelector(state => state.contacts.favoriteContacts);
     const selectedContact = useSelector(state => state.contacts.selectedContact);
 
+    // Helper function to find index of a selectedContact in favorites
+    const findCurrentSelectedIdx = (favorites, selectedContact) => {
+        // Must compare using a copy of favorites because indexOf will not work with objects (not deeply equal)
+        if (Object.keys(selectedContact).length === 0) return -1;
+
+        let selectedContactCopy = favorites.find(favorite => {
+            return selectedContact.name.last === favorite.name.last && selectedContact.name.first === favorite.name.first;
+        })
+        return favorites.indexOf(selectedContactCopy);
+    }
+
+
     const leftClick = () => {
-        const currentIdx = favorites.indexOf(selectedContact);
+        const currentIdx = findCurrentSelectedIdx(favorites, selectedContact)
         const prevContact = favorites[currentIdx - 1];
+
+        if (currentIdx === -1) {
+            setSlidePosition(0);
+            dispatch(selectContact(favorites[0]));
+        }
 
         if (prevContact) {
             dispatch(selectContact(favorites[currentIdx - 1]));
@@ -23,7 +40,7 @@ function FavoritesList() {
     }
 
     const rightClick = () => {
-        const currentIdx = favorites.indexOf(selectedContact);
+        const currentIdx = findCurrentSelectedIdx(favorites, selectedContact)
         const nextContact = favorites[currentIdx + 1];
 
         if (currentIdx === -1) {
@@ -40,25 +57,25 @@ function FavoritesList() {
     }
 
     useEffect(() => {
-        // Must compare a copy of favorite because the selectedContact object is not deeply equal to
-        let selectedContactCopy = favorites.find(favorite => {
-            return selectedContact.name.last === favorite.name.last && selectedContact.name.first === favorite.name.first;
-        })
+        const selectedIdx = findCurrentSelectedIdx(favorites, selectedContact)
+        setCurrentSlideSelected(selectedIdx);
 
-        let index = selectedContactCopy ? favorites.indexOf(selectedContactCopy) : -1;
-        setCurrentSlideSelected(index);
-
-        if (index > -1) {
-            if (index > 0 && index + 4 <= favorites.length) {
-                setSlidePosition(index - 1);
-            } else if  (slidePosition === 0 && favorites.length - 4 > 0) {
-                index === 0 ? setSlidePosition(0) : setSlidePosition(index - 1);
+        if (selectedIdx > -1) {
+            if (selectedIdx > 0 && selectedIdx + 4 <= favorites.length) {
+                setSlidePosition(selectedIdx - 1);
+            } else if ((selectedIdx > 0 && favorites.length - selectedIdx === 2) || favorites.length - selectedIdx === 3) {
+                setSlidePosition(favorites.length - 5)
+            } else if (selectedIdx === 0 && favorites.length - 4 > 0) {
+                selectedIdx === 0 ? setSlidePosition(0) : setSlidePosition(selectedIdx - 1);
             }
-        } else {
-            setSlidePosition(0)
         }
+    }, [selectedContact, slidePosition])
 
-    }, [selectedContact])
+    useEffect(() => {
+        if (favorites.length - 4 > slidePosition) {
+            setSlidePosition(favorites.length - 5)
+        }
+    }, [favorites])
 
     return (
         <div id='favorites-block'>
@@ -69,15 +86,15 @@ function FavoritesList() {
             <div id='favorites-scroll-container'>
                 <button
                     onClick={leftClick}
-                    className={currentSlideSelected > 0 ? 'carousel-button' : 'carousel-button inactive' }
-                    style={{visibility: favorites.length === 0 ? 'hidden' : 'visible'}}
+                    className={currentSlideSelected > 0 ? 'carousel-button' : 'carousel-button inactive'}
+                    style={{ visibility: favorites.length === 0 ? 'hidden' : 'visible' }}
                     aria-label='Go to previous contact'
                 >
                     &#60;
                 </button>
                 <div id='favorites-carousel'>
                     <div id='favorites-track'
-                        style={{ 'transform': `translateX(-${slidePosition * 20}%)`}}>
+                        style={{ 'transform': `translateX(-${slidePosition * 20}%)` }}>
                         {favorites.length > 0 && favorites.map((contact, idx) => (
                             <FavoriteContact contact={contact} key={idx} />
                         ))}
@@ -89,8 +106,8 @@ function FavoritesList() {
                 </div>
                 <button
                     onClick={rightClick}
-                    className={currentSlideSelected < favorites.length - 1 ? 'carousel-button' : 'carousel-button inactive' }
-                    style={{visibility: favorites.length === 0 ? 'hidden' : 'visible'}}
+                    className={currentSlideSelected < favorites.length - 1 ? 'carousel-button' : 'carousel-button inactive'}
+                    style={{ visibility: favorites.length === 0 ? 'hidden' : 'visible' }}
                     aria-label='Go to next contact'
                 >
                     &#62;

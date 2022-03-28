@@ -13,33 +13,6 @@ $breakpoint-large: 1200px;
     border-bottom: 1px solid $light-lines;
     transition: 0.2s;
     padding: 5px 0 10px 10px;
-    h4 {
-        margin: 0;
-        color: $light-text;
-        font-weight: 600;
-        font-size: 14px
-    };
-
-    p {
-        margin: 4px 0px;
-        color: $light-text;
-
-        @media screen and (max-width: $breakpoint-smallphones ){
-            font-size: 10px;
-        }
-
-        @media screen and (min-width: $breakpoint-smallphones) and (max-width: $breakpoint-tablet) {
-            font-size: 12px;
-        }
-
-        @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-medium) {
-            font-size: 14px;
-        }
-
-        @media screen and (min-width: $breakpoint-medium) {
-            font-size: 18px;
-        }
-    };
 }
 
 .contact-block.selected {
