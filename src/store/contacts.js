@@ -32,19 +32,31 @@ export const removeFavorite = favorite => ({
 
 export const getContacts = (pageNo) => async dispatch => {
 
-    const response = await fetch(`https://randomuser.me/api/?page=${pageNo}&results=20&seed=abc&inc=name,location,email,phone,cell,picture`);
-    let data = await response.json();
+    let data = await fetch(`https://randomuser.me/api/?page=${pageNo}&results=20&seed=abc&inc=name,location,email,phone,cell,picture`)
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            throw new Error('Something went wrong.');
+        }).catch((error) => {
+            console.log(error);
+            return error;
+        })
 
-    data = data.results.sort((a, b) => {
-        if (a.name.last.toLowerCase() < b.name.last.toLowerCase()) {
-            return -1;
-        }
-        if (a.name.last.toLowerCase() > b.name.last.toLowerCase()) {
-            return 1;
-        }
-        return 0;
-    });
-    dispatch(loadContacts(data));
+    if (data != 'Error: Something went wrong.') {
+        data = data.results.sort((a, b) => {
+            if (a.name.last.toLowerCase() < b.name.last.toLowerCase()) {
+                return -1;
+            }
+            if (a.name.last.toLowerCase() > b.name.last.toLowerCase()) {
+                return 1;
+            }
+            return 0;
+        });
+
+        dispatch(loadContacts(data));
+    }
+
     return data;
 }
 
@@ -58,20 +70,20 @@ export const storeFavorites = (favorites) => dispatch => {
     return favorites;
 }
 
-export const addThisFavorite = (favorite) =>  dispatch => {
+export const addThisFavorite = (favorite) => dispatch => {
     dispatch(addFavorite(favorite));
     return favorite;
 }
 
-export const removeThisFavorite = (favorite) =>  dispatch => {
+export const removeThisFavorite = (favorite) => dispatch => {
     dispatch(removeFavorite(favorite));
     return favorite;
 }
 
-const initialState = {'contacts': [], 'selectedContact': {}, 'favoriteContacts': []};
+const initialState = { 'contacts': [], 'selectedContact': {}, 'favoriteContacts': [] };
 
 export default function (state = initialState, action) {
-    let newState = {...state};
+    let newState = { ...state };
     switch (action.type) {
         case LOAD_CONTACTS:
             newState.contacts = action.payload;

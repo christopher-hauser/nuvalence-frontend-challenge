@@ -6,49 +6,30 @@
 This application is deployed using AWS Amplify. For quick access to the live site, visit https://main.d3eldjvm4tvlyj.amplifyapp.com/. If you'd like to deploy the application with Amplify
 using your own AWS account, follow the instructions below.
 
-#### 1. Clone this project into a new GitHub repository.
-1. Create a new empty repository.
-2. Make a local copy of the project:
-    ```
-    git clone https://github.com/christopher-hauser/nuvalence-frontend-challenge.git
-    ```
-3. Remove the existing .git file in the folder your cloned down to.
-    ```
-    cd nuvalence-frontend-challenge
-    rm -rf .git
-    ```
-4. Push this local version of the project to your empty repository (from step 1).
-    ```
-    git init
-    git add .
-    git commit -m "first commit"
-    git branch -M main
-    git remote add origin git@github.com:<YOUR-USERNAME>/<YOUR_REPO_NAME>.git
-    git push -u origin main
-    ```
-    If you click on the Code tab in your GitHub repository, you should see that all of the project files have been uploaded.
+#### 1. Fork this project into a new GitHub repository.
 
 #### 2. Deploy using AWS Amplify.
 1. Create an AWS account or log in to an existing one at https://aws.amazon.com/amplify/.
 2. Create the application.
     * If you don't have any applications deployed yet, you will see a "Get Started" button. Click it and then click the next "Get Started" button under "Host your web app".
     * Select GitHub as the source for your existing code. Click continue.
-    * Under recently updated repositories, select the new repository you pushed the code from step 1 to. (Note: You may need to authorize GitHub. If so, follow the instructions provided to log in.)
+    * Under recently updated repositories, select the forked repository you created in step 1. (Note: You may need to authorize GitHub. If so, follow the instructions provided to log in.)
     * Select main as your branch. Click next.
     * Input a name for your app.
-    * Under Build and test settings, click edit. This is to add one line of code to run our tests on deploy.  (See 'npm test --watchAll=false' in the commands under preBuild)
-    - The code should look like this:
+    * We will need to add some code to the auto-generated amplify.yml file to ensure that our tests are run on build. The code should look like this (see test phase):
         ```
             version: 1
             frontend:
             phases:
                 preBuild:
-                commands:
-                    - npm install
-                    - npm test --watchAll=false
+                    commands:
+                        - npm install
+                test:
+                    commands:
+                        - npm test -- --coverage --watchAll=false
                 build:
-                commands:
-                    - npm run build
+                    commands:
+                        - npm run build
             artifacts:
                 baseDirectory: build
                 files:
@@ -77,6 +58,10 @@ Running the application locally can get the app up and running on your system qu
 3. Run the app! This should open a new tab in your browser with the app. If not, you can access it in the browser at http://localhost:3000/.
     ```
     npm start
+    ```
+4. If you would like to test the application, simply run:
+    ```
+    npm test
     ```
 
 ## Summary
@@ -114,11 +99,17 @@ One basic HTML/CSS trick I implemented was the Favorites carousel. This is somet
 
 
 ### Next Steps and Constraints
+
+#### Working with an API for data instead of a database
 The biggest constraint of this project was the API. Not having a database meant that I was unable to do many of the things one might expect from an interactive contact list. Some of these features include adding notes to contacts, being able to update and delete individual's contact information, add brand new contacts, and more. I was glad to still implement one otherwise database-dependent feature utilizing localStorage, but building a fully functioning contact list application with multiple CRUD features solely utilizing localStorage might have been excessive for this purpose, especially considering performance and how unrealistic that would be in any other modern app.
 
 Search was one feature that I implemented initially, but ultimately decided to remove in the final product. The API was once again the cause for this. I was glad to implement pagination to ensure quality page performance, something which the Random User API makes quite easy. However, this also meant the page was only loading a small chunk of users for each page. Searching through a small list like this without having access to the users on all of the other pages felt a bit trivial. That said, it is absolutely something I would expect to implement in a fully fleshed-out contact list application with access to consistent data.
 
 Similarly to search, I also began to implement a nationalities filter before realizing that the API did not support querying by nationality on top of the existing pagination and seed parameters I was setting. I would have set the nationalities in state using checkboxes and then had the URL in the API fetch to dynamically update on state change or, for better page performance, on a button click. Filtering like this (or by other information like location), might be another feature I'd consider in a more fleshed out version of this application. Both of these features are ones that, if I had access to a more reliable database, I'd be able to build out and get styled in a couple hours.
+
+#### Utilizing Cypress for AWS Amplify
+
+One last piece of the project I would have liked to add was a more streamlined testing experience in the deployment pipeline. I learned more about Cypress as AWS Amplify's testing library of choice as I was finishing up this project and didn't have the time to rewrite the tests for Cypress specifically. Currently, the tests are run on build and can be found in the console output under the Build tab, however the Test tab on Amplify provides a clearer and cleaner testing experience for the team that is deploying the code. This, however, is only possible with Cypress tests. When using Amplify in the future, I intend to pick up and utilize Cypress as my testing library for this reason.
 
 
 ### Technologies Implemented
@@ -130,5 +121,4 @@ Similarly to search, I also began to implement a nationalities filter before rea
 
 #### Testing
 - React Testing Library
-- Jest
 - Enzyme
