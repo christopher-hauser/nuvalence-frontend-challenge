@@ -21,7 +21,8 @@ function AddressBook() {
     }, [pageNo])
 
     useEffect(() => {
-        dispatch(storeFavorites(JSON.parse(window.localStorage.getItem('address-book-favorites'))))
+        const storedFavorites = window.localStorage.getItem('address-book-favorites') ? JSON.parse(window.localStorage.getItem('address-book-favorites')) : [];
+        dispatch(storeFavorites(storedFavorites));
     }, [])
 
 
