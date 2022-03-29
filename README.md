@@ -16,7 +16,7 @@ using your own AWS account, follow the instructions below.
     * Under recently updated repositories, select the forked repository you created in step 1. (Note: You may need to authorize GitHub. If so, follow the instructions provided to log in.)
     * Select main as your branch. Click next.
     * Input a name for your app.
-    * We will need to add some code to the auto-generated amplify.yml file to ensure that our tests are run on build. The code should look like this (see test phase):
+    * We will need to add some code to the auto-generated amplify.yml file to ensure that our tests are run on build. The code should look like this (attention: test phase):
         ```
             version: 1
             frontend:
@@ -38,7 +38,7 @@ using your own AWS account, follow the instructions below.
                 paths:
                 - node_modules/**/*
         ```
-    * Check the "Allow AWS Amplify to automatically deploy all files hosted in your project root directory,' then click next.
+    * Check the "Allow AWS Amplify to automatically deploy all files hosted in your project root directory" box, then click next.
     * Save and deploy!
 3. Access the app!
     * You should now be able to see information on the newly deployed application. It will begin the deployment process and will likely be on the "Provision" stage. It may take a few minutes to fully deploy.
