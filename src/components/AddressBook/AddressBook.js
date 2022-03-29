@@ -22,7 +22,7 @@ function AddressBook() {
 
     useEffect(() => {
         const storedFavorites = window.localStorage.getItem('address-book-favorites') ? JSON.parse(window.localStorage.getItem('address-book-favorites')) : [];
-        dispatch(storeFavorites(storedFavorites));
+        dispatch(storeFavorites([]));
     }, [])
 
 
