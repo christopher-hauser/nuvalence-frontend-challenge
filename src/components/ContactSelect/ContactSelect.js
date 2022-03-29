@@ -8,14 +8,14 @@ function ContactSelect({ contact }) {
     const selected = useSelector(state => state.contacts.selectedContact);
     const favorites = useSelector(state => state.contacts.favoriteContacts);
     const isSelected = contact.name.last === selected.name?.last && contact.name.first === selected?.name.first;
-
-    let alreadyFavorited = favorites?.find(person => person.name.last === contact.name.last && person.name.first === contact.name.first);
+    const alreadyFavorited = favorites?.find(person => person.name.last === contact.name.last && person.name.first === contact.name.first);
     const [isFavorite, setIsFavorite] = useState(Boolean(alreadyFavorited))
 
+
+    // Handles contact selection
     const handleClick = () => {
         dispatch(selectContact(contact))
     }
-
 
     const addFavorite = (contact) => {
         dispatch(addThisFavorite(contact));
@@ -27,7 +27,7 @@ function ContactSelect({ contact }) {
         return contact;
     }
 
-
+    // Handles favorite/unfavorite actions
     const handleFavorite = e => {
         e.stopPropagation();
         isFavorite ? removeFavorite(contact) : addFavorite(contact);
@@ -35,8 +35,8 @@ function ContactSelect({ contact }) {
     }
 
     useEffect(() => {
-        alreadyFavorited = favorites?.find(person => person.name.last === contact.name.last && person.name.first === contact.name.first);
-        setIsFavorite(alreadyFavorited)
+        const isAlreadyFavorited = favorites?.find(person => person.name.last === contact.name.last && person.name.first === contact.name.first);
+        setIsFavorite(isAlreadyFavorited)
     }, [contact])
 
     useEffect(() => {

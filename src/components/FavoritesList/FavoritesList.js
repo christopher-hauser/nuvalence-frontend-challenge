@@ -27,6 +27,7 @@ function FavoritesList() {
         const currentIdx = findCurrentSelectedIdx(favorites, selectedContact)
         const prevContact = favorites[currentIdx - 1];
 
+        // If the currently selected user is not in favorites and someone clicks left, go to beginning of favorites.
         if (currentIdx === -1) {
             setSlidePosition(0);
             dispatch(selectContact(favorites[0]));
@@ -34,7 +35,6 @@ function FavoritesList() {
 
         if (prevContact) {
             dispatch(selectContact(favorites[currentIdx - 1]));
-            setCurrentSlideSelected(currentIdx - 1);
         }
         return;
     }
@@ -43,6 +43,7 @@ function FavoritesList() {
         const currentIdx = findCurrentSelectedIdx(favorites, selectedContact)
         const nextContact = favorites[currentIdx + 1];
 
+        // If the currently selected user is not in favorites and someone clicks right, go to beginning of favorites.
         if (currentIdx === -1) {
             setSlidePosition(0);
             dispatch(selectContact(favorites[0]));
@@ -50,7 +51,6 @@ function FavoritesList() {
 
         if (nextContact) {
             dispatch(selectContact(favorites[currentIdx + 1]));
-            setCurrentSlideSelected(currentIdx + 1);
         }
 
         return;
@@ -60,22 +60,24 @@ function FavoritesList() {
         const selectedIdx = findCurrentSelectedIdx(favorites, selectedContact)
         setCurrentSlideSelected(selectedIdx);
 
+        // If this person doesn't exist in favorites:
         if (selectedIdx > -1) {
             if (selectedIdx > 0 && selectedIdx + 4 <= favorites?.length) {
+                // Prevent slide from moving if we are seeing the last 5 favorites in the list.
                 setSlidePosition(selectedIdx - 1);
+            } else if (selectedIdx === 0) {
+                // Resets slide to 0 if user is first in list.
+                setSlidePosition(0)
             } else if ((selectedIdx > 0 && favorites?.length - selectedIdx === 2) || favorites.length - selectedIdx === 3) {
+                // Ensures slide moves to the correct position if the user is selected via list and is second or third to last in the array. (Safety catch for cases where slide position is not typical.)
                 setSlidePosition(favorites.length - 5)
-            } else if (selectedIdx === 0 && favorites?.length - 4 > 0) {
-                selectedIdx === 0 ? setSlidePosition(0) : setSlidePosition(selectedIdx - 1);
+            } else if (favorites.length - 4 > slidePosition) {
+                // Resets slide if a user is selected via list and the position is not typical.
+                let newPos = favorites.length - 5 > 0 ? favorites.length - 5 : 0;
+                setSlidePosition(newPos)
             }
         }
-    }, [selectedContact, slidePosition])
-
-    useEffect(() => {
-        if (favorites?.length - 4 > slidePosition) {
-            setSlidePosition(favorites.length - 5)
-        }
-    }, [favorites])
+    }, [selectedContact, slidePosition, favorites])
 
     return (
         <div id='favorites-block'>
