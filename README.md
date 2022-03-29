@@ -12,16 +12,21 @@ using your own AWS account, follow the instructions below.
     ```
     git clone https://github.com/christopher-hauser/nuvalence-frontend-challenge.git
     ```
-3. Add your empty repository as an upstream remote.
+3. Remove the existing .git file in the folder your cloned down to.
     ```
     cd nuvalence-frontend-challenge
-    git remote add upstream https://github.com/<YOUR_USERNAME>/<YOUR_EMPTY_REPO>.git
+    rm -rf .git
     ```
-4. Update your empty repository.
+4. Push this local version of the project to your empty repository (from step 1).
     ```
-    git pull upstream master
+    git init
+    git add .
+    git commit -m "first commit"
+    git branch -M main
+    git remote add origin git@github.com:<YOUR-USERNAME>/<YOUR_REPO_NAME>.git
+    git push -u origin main
     ```
-5. Finally, push your forked copy of the original project back to GitHub.
+    If you click on the Code tab in your GitHub repository, you should see that all of the project files have been uploaded.
 
 #### 2. Deploy using AWS Amplify.
 1. Create an AWS account or log in to an existing one at https://aws.amazon.com/amplify/.
@@ -55,8 +60,8 @@ using your own AWS account, follow the instructions below.
     * Check the "Allow AWS Amplify to automatically deploy all files hosted in your project root directory,' then click next.
     * Save and deploy!
 3. Access the app!
-* You should now be able to see information on the newly deployed application. It will begin the deployment process and will likely be on the "Provision" stage. It may take a few minutes to fully deploy.
-* Once deployment has completed and the application has been verified, you can click on the link provided by AWS.
+    * You should now be able to see information on the newly deployed application. It will begin the deployment process and will likely be on the "Provision" stage. It may take a few minutes to fully deploy.
+    * Once deployment has completed and the application has been verified, you can click on the link provided by AWS.
 
 ### How to Run Locally
 Running the application locally can get the app up and running on your system quickly. However, you will need to have Node.js and the npm command line interface installed to do this.
@@ -109,11 +114,11 @@ One basic HTML/CSS trick I implemented was the Favorites carousel. This is somet
 
 
 ### Next Steps and Constraints
-The biggest constraint of this project was the API. Not having a database meant that I was unable to do many of the things one might expect from an interactive contact list. Some of these features include adding notes to contacts, being able to update and delete individual's contact information, add brand new contacts, and more. I was glad to still implement one database-dependent feature utilizing localStorage, but building a fully functioning contact list application with multiple CRUD features solely utilizing localStorage might have been excessive for this purpose, especially considering performance and how unrealistic that would be in any other modern app.
+The biggest constraint of this project was the API. Not having a database meant that I was unable to do many of the things one might expect from an interactive contact list. Some of these features include adding notes to contacts, being able to update and delete individual's contact information, add brand new contacts, and more. I was glad to still implement one otherwise database-dependent feature utilizing localStorage, but building a fully functioning contact list application with multiple CRUD features solely utilizing localStorage might have been excessive for this purpose, especially considering performance and how unrealistic that would be in any other modern app.
 
-Search was one feature that I implemented initially, but ultimately decided to remove in the final product. The API was once again the cause for this. I was glad to implement pagination to ensure quality page performance, something which the Random User API makes quite easy. However, this also meant the page was only loading a small chunk of users for each page. Searching through a small list like this without having access to the users on all of the other pages felt a bit trivial. That said, it is absolutely something I would expect to implement in a fully-fleshed out contact list application with access to consistent data, probably using debouncing for page optimization.
+Search was one feature that I implemented initially, but ultimately decided to remove in the final product. The API was once again the cause for this. I was glad to implement pagination to ensure quality page performance, something which the Random User API makes quite easy. However, this also meant the page was only loading a small chunk of users for each page. Searching through a small list like this without having access to the users on all of the other pages felt a bit trivial. That said, it is absolutely something I would expect to implement in a fully fleshed-out contact list application with access to consistent data.
 
-Similarly to search, I also began to implement a nationalities filter before realizing that the API did not support querying by nationality on top of the existing pagination and seed parameters I was setting. I would have set the nationalities in state using checkboxes and then had the URL in the API fetch to dynamically update on state change or, for better page performance, on a button click. Filtering like this (or by other information like location), might be another feature I'd consider in a more fleshed out version of this application.
+Similarly to search, I also began to implement a nationalities filter before realizing that the API did not support querying by nationality on top of the existing pagination and seed parameters I was setting. I would have set the nationalities in state using checkboxes and then had the URL in the API fetch to dynamically update on state change or, for better page performance, on a button click. Filtering like this (or by other information like location), might be another feature I'd consider in a more fleshed out version of this application. Both of these features are ones that, if I had access to a more reliable database, I'd be able to build out and get styled in a couple hours.
 
 
 ### Technologies Implemented
