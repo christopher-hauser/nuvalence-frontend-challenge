@@ -90,22 +90,22 @@ premise for the application I built.
 
 ### Features
 #### Contact Selection
-    The most basic, but integral feature on this site is the ability to select a contact and render their information. Users are able to click on a user from the list and display their name, phone numbers (cell and home), email, and home address. This is done with React and Redux state management.
+The most basic, but integral feature on this site is the ability to select a contact and render their information. Users are able to click on a user from the list and display their name, phone numbers (cell and home), email, and home address. This is done with React and Redux state management.
 
-    Redux is implemented to store the current page of contacts, which is pulled out of state by the Contact List component and passed as props down to each individual Contact Select component. This is what creates the clickable list of contacts. When one of those individual contacts is clicked, that contact information is sent to the Redux state as an object, where it can be accessed by the Contact Details component. This is what renders the full contact information for each individual.
+Redux is implemented to store the current page of contacts, which is pulled out of state by the Contact List component and passed as props down to each individual Contact Select component. This is what creates the clickable list of contacts. When one of those individual contacts is clicked, that contact information is sent to the Redux state as an object, where it can be accessed by the Contact Details component. This is what renders the full contact information for each individual.
 
 #### Favorite Contacts
-    Thinking about this app as more of an individual's contacts as opposed to a large directory, I wanted to implement a Favorites feature. Users can click the stars on the right-hand side of each
-    contact's element in the list to favorite or unfavorite them. They are then added to the carousel with their name and photos for easy access. There is no limit to how many contacts a user can favorite.
+Thinking about this app as more of an individual's contacts as opposed to a large directory, I wanted to implement a Favorites feature. Users can click the stars on the right-hand side of each
+contact's element in the list to favorite or unfavorite them. They are then added to the carousel with their name and photos for easy access. There is no limit to how many contacts a user can favorite.
 
-    Given that I was working with a randomly-generated list of users and not a database where I could modify information, I decided to store these favorite contacts in localStorage. This means that
-    users can favorite contacts, navigate away from the page, and return to see those favorites persist. Again, this is something much better implemented with a database that can keep track of the favorited status of a user, but localStorage provides a unique fix for this kind of assignment.
+Given that I was working with a randomly-generated list of users and not a database where I could modify information, I decided to store these favorite contacts in localStorage. This means that
+users can favorite contacts, navigate away from the page, and return to see those favorites persist. Again, this is something much better implemented with a database that can keep track of the favorited status of a user, but localStorage provides a unique fix for this kind of assignment.
 
 #### Responsiveness
-    Part of this assignment was to ensure that the application was responsive to multiple different browser sizes. This was done using media queries in sass to adjust layout, font-sizes, view heights, and more depending on the screens width and height. Media queries based on screen width often handle the majority of responsive styling issues, however, providing additional queries based on height ensures that wide and short screens (i.e. iPads) also clean.
+Part of this assignment was to ensure that the application was responsive to multiple different browser sizes. This was done using media queries in sass to adjust layout, font-sizes, view heights, and more depending on the screens width and height. Media queries based on screen width often handle the majority of responsive styling issues, however, providing additional queries based on height ensures that wide and short screens (i.e. iPads) also clean.
 
 #### Favorites Carousel
-    One basic HTML/CSS trick I implemented was the Favorites carousel. This is something that might be done more robustly by building out a full React Carousel component or using some of the existing Carousel compoenent libraries that are out there, but given the assignment, it made sense to make a simple one on my own. The carousel functions using an in-line style attribute that dynamically changes the ```transform: translateX()``` property on the inner carousel div whenever the 'slidePosition' variable in state changes. There is some logic in a useEffect that keeps track of the index of the selected contact and updates that state of 'slidePosition' accordingly.
+One basic HTML/CSS trick I implemented was the Favorites carousel. This is something that might be done more robustly by building out a full React Carousel component or using some of the existing Carousel compoenent libraries that are out there, but given the assignment, it made sense to make a simple one on my own. The carousel functions using an in-line style attribute that dynamically changes the ```transform: translateX()``` property on the inner carousel div whenever the 'slidePosition' variable in state changes. There is some logic in a useEffect that keeps track of the index of the selected contact and updates that state of 'slidePosition' accordingly.
 
 
 ### Next Steps and Constraints
