@@ -4,21 +4,21 @@ import contacts from './contacts';
 
 const rootReducer = combineReducers({
     contacts
-})
+});
 
-let enhancer = applyMiddleware(thunk);;
+let enhancer;
 
-// if (process.env.NODE_ENV === 'production') {
-//     enhancer = applyMiddleware(thunk);
-// } else {
-//     const logger = require('redux-logger').default;
-//     const composeEnhancers =
-//         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-//     enhancer = composeEnhancers(applyMiddleware(thunk, logger));
-// }
+if (process.env.NODE_ENV === 'production') {
+    enhancer = applyMiddleware(thunk);
+} else {
+    const logger = require('redux-logger').default;
+    const composeEnhancers =
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+    enhancer = composeEnhancers(applyMiddleware(thunk, logger));
+}
 
-const configureStore = () => {
-    return createStore(rootReducer, window.__PRELOADED_STATE_, enhancer);
+const configureStore = (preloadedState) => {
+    return createStore(rootReducer, preloadedState, enhancer);
 };
 
 export default configureStore;
