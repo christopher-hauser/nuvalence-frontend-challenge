@@ -7,9 +7,6 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
-    "aws-amplify": "^4.3.17",
-    "aws-amplify-react": "^5.1.9",
-    "aws-sdk": "^2.1101.0",
     "bootstrap-icons": "^1.8.1",
     "bootstrap-icons-font": "^2.0.7",
     "enzyme": "^3.11.0",
@@ -28,8 +25,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "aws s3 sync build/ s3://nuvalence-react-address-book-challenge --acl public-read"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
