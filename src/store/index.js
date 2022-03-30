@@ -12,8 +12,8 @@ const composeEnhancers =
 let enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 
 
-const configureStore = (preloadedState) => {
-    return createStore(rootReducer, preloadedState, enhancer);
+const configureStore = () => {
+    return createStore(rootReducer, enhancer);
 };
 
 export default configureStore;

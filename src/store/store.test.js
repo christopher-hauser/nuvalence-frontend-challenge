@@ -18,7 +18,7 @@ const mockResponse = ( status, statusText, response ) => {
 };
 
 describe('store', () => {
-    test('should return the initial state', () => {
+    it('should return the initial state', () => {
         expect(contactsReducer(undefined, {})).toEqual({
             'contacts': [],
             'selectedContact': {},

@@ -7,7 +7,7 @@ import './FavoritesList.scss'
 function FavoritesList() {
     const dispatch = useDispatch();
     const [slidePosition, setSlidePosition] = useState(0);
-    const [currentSlideSelected, setCurrentSlideSelected] = useState(0);
+    const [currentSelectedIdx, setCurrentSelectedIdx] = useState(0);
     const favorites = useSelector(state => state.contacts.favoriteContacts);
     const selectedContact = useSelector(state => state.contacts.selectedContact);
 
@@ -36,6 +36,7 @@ function FavoritesList() {
         if (prevContact) {
             dispatch(selectContact(favorites[currentIdx - 1]));
         }
+
         return;
     }
 
@@ -58,7 +59,7 @@ function FavoritesList() {
 
     useEffect(() => {
         const selectedIdx = findCurrentSelectedIdx(favorites, selectedContact)
-        setCurrentSlideSelected(selectedIdx);
+        setCurrentSelectedIdx(selectedIdx);
 
         // If this person doesn't exist in favorites:
         if (selectedIdx > -1) {
@@ -68,13 +69,10 @@ function FavoritesList() {
             } else if (selectedIdx === 0) {
                 // Resets slide to 0 if user is first in list.
                 setSlidePosition(0)
-            } else if ((selectedIdx > 0 && favorites?.length - selectedIdx === 2) || favorites.length - selectedIdx === 3) {
-                // Ensures slide moves to the correct position if the user is selected via list and is second or third to last in the array. (Safety catch for cases where slide position is not typical.)
-                setSlidePosition(favorites.length - 5)
             } else if (favorites.length - 4 > slidePosition) {
-                // Resets slide if a user is selected via list and the position is not typical.
+                // Resets slide to an optimal position if a user is selected and the slide position is not typical (i.e. not already favorites.length - 5)
                 let newPos = favorites.length - 5 > 0 ? favorites.length - 5 : 0;
-                setSlidePosition(newPos)
+                setSlidePosition(newPos);
             }
         }
     }, [selectedContact, slidePosition, favorites])
@@ -88,7 +86,7 @@ function FavoritesList() {
             <div id='favorites-scroll-container'>
                 <button
                     onClick={leftClick}
-                    className={currentSlideSelected > 0 ? 'carousel-button' : 'carousel-button inactive'}
+                    className={currentSelectedIdx > 0 ? 'carousel-button' : 'carousel-button inactive'}
                     style={{ visibility: favorites?.length === 0 ? 'hidden' : 'visible' }}
                     aria-label='Go to previous contact'
                 >
@@ -108,7 +106,7 @@ function FavoritesList() {
                 </div>
                 <button
                     onClick={rightClick}
-                    className={currentSlideSelected < favorites?.length - 1 ? 'carousel-button' : 'carousel-button inactive'}
+                    className={currentSelectedIdx < favorites?.length - 1 ? 'carousel-button' : 'carousel-button inactive'}
                     style={{ visibility: favorites?.length === 0 ? 'hidden' : 'visible' }}
                     aria-label='Go to next contact'
                 >

@@ -1,6 +1,4 @@
-$breakpoint-tablet: 767px;
-$breakpoint-medium: 992px;
-$breakpoint-large: 1200px;
+@import '../../styles.scss';
 
 #nav {
     position: sticky;

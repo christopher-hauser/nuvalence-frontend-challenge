@@ -3,7 +3,6 @@ import ContactList from '../ContactList/ContactList';
 import ContactDetails from '../ContactDetails/ContactDetails';
 import FavoritesList from '../FavoritesList/FavoritesList';
 import './AddressBook.scss'
-
 import { getContacts, storeFavorites } from '../../store/contacts';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,11 +11,12 @@ function AddressBook() {
     const contacts = useSelector(state => state.contacts.contacts);
     const [pageNo, setPageNo] = useState(1);
 
-    async function loadAllContacts() {
-        await dispatch(getContacts(pageNo));
-    }
 
     useEffect(() => {
+        async function loadAllContacts() {
+            await dispatch(getContacts(pageNo));
+        }
+
         loadAllContacts();
     }, [pageNo])
 

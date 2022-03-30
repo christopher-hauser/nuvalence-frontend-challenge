@@ -31,7 +31,6 @@ export const removeFavorite = favorite => ({
 
 
 export const getContacts = (pageNo) => async dispatch => {
-
     let data = await fetch(`https://randomuser.me/api/?page=${pageNo}&results=20&seed=abc&inc=name,location,email,phone,cell,picture`)
         .then(res => {
             if (res.ok) {
@@ -56,7 +55,6 @@ export const getContacts = (pageNo) => async dispatch => {
 
         dispatch(loadContacts(data));
     }
-
     return data;
 }
 
@@ -82,7 +80,7 @@ export const removeThisFavorite = (favorite) => dispatch => {
 
 const initialState = { 'contacts': [], 'selectedContact': {}, 'favoriteContacts': [] };
 
-export default function (state = initialState, action) {
+export default function contactReducer (state = initialState, action) {
     let newState = { ...state };
     switch (action.type) {
         case LOAD_CONTACTS:
