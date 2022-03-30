@@ -3,8 +3,7 @@
 ## Deployment Instructions
 
 ### How to Deploy to AWS Amplify
-This application is deployed using AWS Amplify. For quick access to the live site, visit https://main.d3eldjvm4tvlyj.amplifyapp.com/. If you'd like to deploy the application with Amplify
-using your own AWS account, follow the instructions below.
+This application is deployed using AWS Amplify. For quick access to the live site, visit https://main.d3eldjvm4tvlyj.amplifyapp.com/. If you'd like to deploy the application with Amplify using your own AWS account, follow the instructions below.
 
 #### 1. Fork this project into a new GitHub repository.
 
@@ -16,7 +15,7 @@ using your own AWS account, follow the instructions below.
     * Under recently updated repositories, select the forked repository you created in step 1. (Note: You may need to authorize GitHub. If so, follow the instructions provided to log in.)
     * Select main as your branch. Click next.
     * Input a name for your app.
-    * We will need to add some code to the auto-generated amplify.yml file to ensure that our tests are run on build. The code should look like this (see test phase):
+    * We will need to add some code to the auto-generated amplify.yml file to ensure that our tests are run on build. The code should look like this (attention: test phase):
         ```
             version: 1
             frontend:
@@ -38,16 +37,18 @@ using your own AWS account, follow the instructions below.
                 paths:
                 - node_modules/**/*
         ```
-    * Check the "Allow AWS Amplify to automatically deploy all files hosted in your project root directory,' then click next.
+    * Check the "Allow AWS Amplify to automatically deploy all files hosted in your project root directory" box, then click next.
     * Save and deploy!
 3. Access the app!
     * You should now be able to see information on the newly deployed application. It will begin the deployment process and will likely be on the "Provision" stage. It may take a few minutes to fully deploy.
     * Once deployment has completed and the application has been verified, you can click on the link provided by AWS.
 
+Deploying with AWS Amplify using a GitHub repository means that every time a push is made, the application is rebuilt. This ensures an application that is always up to date.
+
 ### How to Run Locally
 Running the application locally can get the app up and running on your system quickly. However, you will need to have Node.js and the npm command line interface installed to do this.
 
-1. Clone the directory to your local machine.
+1. In your terminal, clone the directory to your local machine.
     ```
     git clone https://github.com/christopher-hauser/nuvalence-frontend-challenge.git
     ```
@@ -74,9 +75,7 @@ The main criteria was as follows:
 - The application should be responsive
 
 ### Overall Approach
-When I first approached this project, I thought about two different kinds of address books: one that acts like a directory (i.e. a list of employees on a company website), and one that
-behaves more like a personal contact list (i.e. the one you might find on your phone). The former is pretty simple - you pull the information from the database or API and display it on the page. However, I was hoping to create something a bit more interactive, like a personal contact list where you can favorite contacts, add notes, update information, and more. That is the
-premise for the application I built.
+When I first approached this project, I thought about two different kinds of address books: one that acts like a directory (i.e. a list of employees on a company website), and one that behaves more like a personal contact list (i.e. the one you might find on your phone). The former is pretty simple - you pull the information from the database or API and display it on the page. However, I was hoping to create something a bit more interactive, like a personal contact list where you can favorite contacts, add notes, update information, and more. That is the premise for the application I built.
 
 ### Features
 #### Contact Selection
@@ -85,14 +84,12 @@ The most basic, but integral feature on this site is the ability to select a con
 Redux is implemented to store the current page of contacts, which is pulled out of state by the Contact List component and passed as props down to each individual Contact Select component. This is what creates the clickable list of contacts. When one of those individual contacts is clicked, that contact information is sent to the Redux state as an object, where it can be accessed by the Contact Details component. This is what renders the full contact information for each individual.
 
 #### Favorite Contacts
-Thinking about this app as more of an individual's contacts as opposed to a large directory, I wanted to implement a Favorites feature. Users can click the stars on the right-hand side of each
-contact's element in the list to favorite or unfavorite them. They are then added to the carousel with their name and photos for easy access. There is no limit to how many contacts a user can favorite.
+Thinking about this app as more of an individual's contacts as opposed to a large directory, I wanted to implement a Favorites feature. Users can click the stars on the right-hand side of each contact's element in the list to favorite or unfavorite them. They are then added to the carousel with their name and photos for easy access. There is no limit to how many contacts a user can favorite.
 
-Given that I was working with a randomly-generated list of users and not a database where I could modify information, I decided to store these favorite contacts in localStorage. This means that
-users can favorite contacts, navigate away from the page, and return to see those favorites persist. Again, this is something much better implemented with a database that can keep track of the favorited status of a user, but localStorage provides a unique fix for this kind of assignment.
+Given that I was working with a randomly-generated list of users and not a database where I could modify information, I decided to store these favorite contacts in localStorage. This means that users can favorite contacts, navigate away from the page, and return to see those favorites persist. Again, this is something much better implemented with a database that can keep track of the favorited status of a user, but localStorage provides a unique fix for this kind of assignment.
 
 #### Responsiveness
-Part of this assignment was to ensure that the application was responsive to multiple different browser sizes. This was done using media queries in sass to adjust layout, font-sizes, view heights, and more depending on the screens width and height. Media queries based on screen width often handle the majority of responsive styling issues, however, providing additional queries based on height ensures that wide and short screens (i.e. iPads) also clean.
+Part of this assignment was to ensure that the application was responsive to multiple different browser sizes. This was done using media queries in sass to adjust layout, font-sizes, view heights, and more depending on the screens width and height. Media queries based on screen width often handle the majority of responsive styling issues, however, providing additional queries based on height ensures that wide and short screens (i.e. iPads) also look and feel clean.
 
 #### Favorites Carousel
 One basic HTML/CSS trick I implemented was the Favorites carousel. This is something that might be done more robustly by building out a full React Carousel component or using some of the existing Carousel compoenent libraries that are out there, but given the assignment, it made sense to make a simple one on my own. The carousel functions using an in-line style attribute that dynamically changes the ```transform: translateX()``` property on the inner carousel div whenever the 'slidePosition' variable in state changes. There is some logic in a useEffect that keeps track of the index of the selected contact and updates that state of 'slidePosition' accordingly.
@@ -101,15 +98,15 @@ One basic HTML/CSS trick I implemented was the Favorites carousel. This is somet
 ### Next Steps and Constraints
 
 #### Working with an API for data instead of a database
-The biggest constraint of this project was the API. Not having a database meant that I was unable to do many of the things one might expect from an interactive contact list. Some of these features include adding notes to contacts, being able to update and delete individual's contact information, add brand new contacts, and more. I was glad to still implement one otherwise database-dependent feature utilizing localStorage, but building a fully functioning contact list application with multiple CRUD features solely utilizing localStorage might have been excessive for this purpose, especially considering performance and how unrealistic that would be in any other modern app.
+The biggest constraint of this project was the API. Not having a database meant that I was unable to do many of the things one might expect from an interactive contact list. Some of these features include adding notes to contacts, being able to update and delete individual's contact information, add brand new contacts, and more. I was glad to still implement one otherwise database-dependent feature utilizing localStorage (favorites), but building a fully functioning contact list application with multiple CRUD features solely utilizing localStorage might have been excessive for this purpose, especially considering both performance and how unrealistic that would be in any other modern app.
 
 Search was one feature that I implemented initially, but ultimately decided to remove in the final product. The API was once again the cause for this. I was glad to implement pagination to ensure quality page performance, something which the Random User API makes quite easy. However, this also meant the page was only loading a small chunk of users for each page. Searching through a small list like this without having access to the users on all of the other pages felt a bit trivial. That said, it is absolutely something I would expect to implement in a fully fleshed-out contact list application with access to consistent data.
 
-Similarly to search, I also began to implement a nationalities filter before realizing that the API did not support querying by nationality on top of the existing pagination and seed parameters I was setting. I would have set the nationalities in state using checkboxes and then had the URL in the API fetch to dynamically update on state change or, for better page performance, on a button click. Filtering like this (or by other information like location), might be another feature I'd consider in a more fleshed out version of this application. Both of these features are ones that, if I had access to a more reliable database, I'd be able to build out and get styled in a couple hours.
+Similarly to search, I also began to implement a nationalities filter before realizing that the API did not support querying by nationality on top of the existing pagination and seed parameters I was setting. I would have set the nationalities in state using checkboxes and then had the URL in the API fetch to dynamically update on state change or, for better page performance, on a button click. Filtering like this (or by other information like location), might be another feature I'd consider in a more fleshed out version of this application. Both of these features are ones that, if I had access to a database, I'd be able to build out and get styled in a couple hours.
 
-#### Utilizing Cypress for AWS Amplify
+#### Utilizing Cypress Testing for AWS Amplify
 
-One last piece of the project I would have liked to add was a more streamlined testing experience in the deployment pipeline. I learned more about Cypress as AWS Amplify's testing library of choice as I was finishing up this project and didn't have the time to rewrite the tests for Cypress specifically. Currently, the tests are run on build and can be found in the console output under the Build tab, however the Test tab on Amplify provides a clearer and cleaner testing experience for the team that is deploying the code. This, however, is only possible with Cypress tests. When using Amplify in the future, I intend to pick up and utilize Cypress as my testing library for this reason.
+One last piece of the project I would have liked to add was a more streamlined testing experience in the deployment pipeline. I learned more about Cypress as AWS Amplify's testing library of choice as I was finishing up this project and didn't have the time to rewrite the tests for Cypress specifically. Currently, the tests are run on build and can be found in the console output under the AWS Amplify project Build tab, however the Test tab provides a clearer and cleaner testing experience for the team that is deploying the code. This feature, however, is only accessible with Cypress tests. When using Amplify in the future, I intend to pick up and utilize Cypress as my testing library for this reason.
 
 
 ### Technologies Implemented
@@ -121,4 +118,5 @@ One last piece of the project I would have liked to add was a more streamlined t
 
 #### Testing
 - React Testing Library
+- Jest
 - Enzyme
